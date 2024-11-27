@@ -3,30 +3,43 @@
 collaborateur:
 
 Maxime Mobailly
+
 Matteo Cherief
+
 Gautier Martin
+
 Benoit Dourdet
 
 # Dependencies Import
 
 import pandas as pd
+
 import numpy as np
+
 import pandas_gbq
+
 from google.colab import auth
+
 import plotly.express as px
+
 !pip install thefuzz
+
 import thefuzz
 
 # Datasets import from Kaggle
 
 ## Download latest version in content
+
 !kaggle datasets download -d piterfm/paris-2024-olympic-summer-games --unzip -p ./content
+
 !kaggle datasets download -d krzysztofszafraski/paris2024-olympics-country-level-data --unzip -p ./content
+
 !kaggle datasets download -d josephcheng123456/olympic-historical-dataset-from-olympediaorg --unzip -p ./content
 
 # Datasets import from Bigquery
 
 auth.authenticate_user()
+
 project = "jo-paris-2024-442810"
 
 Dataframes= ["Socio_economic_Dataset",
