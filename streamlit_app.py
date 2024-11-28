@@ -6,6 +6,7 @@ from google.oauth2 import service_account
 import plotly.express as px
 
 # code a utiliser pour re-run l'appli  >>>>>>>>>>>>>> streamlit run streamlit_app.py
+# code pour list package >>>>>>>>>>>>>>>>>>>>>>>>>>>> pip list
 
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
@@ -49,14 +50,20 @@ def get_data_from_bigquery(query):
     return pd.DataFrame([dict(row) for row in rows])
 
 @st.cache_data(ttl=600)
-def Athlete_histo_1(athletes, x, color, title):
-  fig1 = px.histogram(athletes, x = x, color=color, title=title)
+def Athlete_histo_1(athletes, x,y, color, title,barmode='relative',text_auto=False,log_x=False, log_y=False, range_x=None, range_y=None, histfunc=None, labels={}):
+  fig1 = px.histogram(athletes, x = x,y =y, color=color, title=title,barmode=barmode,text_auto=text_auto,log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, histfunc=histfunc,labels=labels)
   fig1.show()
 
-#>>>>>>>>>>>>>>>>>>>>>> Perform a query.
+
+#>>>>>>>>>>>>>>>>>>>>>> Perform a query
 
 for Dataframe in Dataframes:
     query = f"SELECT * FROM `jo-paris-2024-442810.{Dataset}.{Dataframe}`"
     df = get_data_from_bigquery(query)
+
     st.write(f"Voici les données pour {Dataframe}:")
     st.dataframe(df)
+
+
+#>>>>>>>>>>>>>>>>>>>>>> Graph
+Athlete_histo_1(df, x = 'country_code',y =df["code"], histfunc='count', color="country_code", title="Athletes number per country", )
