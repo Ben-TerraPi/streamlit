@@ -8,7 +8,9 @@ import plotly.express as px
 # code a utiliser pour re-run l'appli  >>>>>>>>>>>>>> streamlit run streamlit_app.py
 # code pour list package >>>>>>>>>>>>>>>>>>>>>>>>>>>> pip list
 
+
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
+
 
 st.set_page_config(
     page_title="JO Paris 2024",
@@ -17,64 +19,20 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#>>>>>>>>>>>>>>>>>>>>>> Create API client.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"]
-)
 
-#>>>>>>>>>>>>>>>>>>>>>> BQ authentification
-client = bigquery.Client(credentials=credentials)
-project = "jo-paris-2024-442810"
+#>>>>>>>>>>>>>>>>>>>>>> Streamlit sidebar
 
-#>>>>>>>>>>>>>>>>>>>>>> Dataframes
-Dataframes = ["olympics_games_summer"]
-Dataset = "dataset_v2"
-
-
-#>>>>>>>>>>>>>>>>>>>>>> Streamlit app
-
-#Title & intro
-
-st.title('🏅 Paris JO 2024 - Data Visualization Project',
-         )
-st.markdown("""
-    **Welcome to the Paris 2024 Olympic Games data visualization dashboard.** 
-    """)
-
-# Data overview
-
-st.header("What this project covers:")
-
-st.markdown("""
-    - Olympic summer games history.
-    - Micro analysis of Athletes.
-    - *Macro analysis of participant Countries.
-    """)
-# Expander
-
-with st.expander("📊 French Olympic data"):
-    st.write("""
-        lists of datasets.
-             """)
-    
-
-#>>>>>>>>>>>>>>>>>>>>>> Application : sidebar
 
 with st.sidebar:
     st.image("./images/logo-paris-2024.png")
 
-    st.header("Paramètres")
+    st.header("Pages")
 
-    st.radio(
-        label="Granularity",
-        options=["Country", "Athletes"],
-        format_func=lambda x: "Countries" if x == "Country" else "Athletes",
-        #key="games_type",
-        horizontal=True,
-    )
+    page = st.sidebar.radio('',["Home","History", "Countries", "Athletes"])
+
     st.multiselect(
         label="Filtrer par type",
-        options=Dataframes,
+        options=st.dataframe,
         #key="selected_types",
         #placeholder=,
     )
@@ -103,6 +61,56 @@ with st.sidebar:
     """)
 
 
+#>>>>>>>>>>>>>>>>>>>>>> Create API client.
+
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"])
+
+
+#>>>>>>>>>>>>>>>>>>>>>> BQ authentification
+
+
+client = bigquery.Client(credentials=credentials)
+project = "jo-paris-2024-442810"
+
+
+#>>>>>>>>>>>>>>>>>>>>>> Dataframes
+
+
+Dataframes = ["olympics_games_summer"]
+Dataset = "dataset_v2"
+
+
+#>>>>>>>>>>>>>>>>>>>>>> Streamlit app
+
+
+#Title & intro
+
+st.title('🏅 Paris JO 2024 - Data Visualization Project',
+         )
+st.markdown("""
+    **Welcome to the Paris 2024 Olympic Games data visualization dashboard.** 
+    """)
+
+# Data overview
+
+st.header("What this project covers:")
+
+st.markdown("""
+    - Olympic summer games history.
+    - Micro analysis of Athletes.
+    - *Macro analysis of participant Countries.
+    """)
+
+# Expander
+
+with st.expander("📊 French Olympic data"):
+    st.write("""
+        lists of datasets.
+             """)
+    
+
 #>>>>>>>>>>>>>>>>>>>>>> functions
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 @st.cache_data(ttl=600)
@@ -119,6 +127,7 @@ def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code',
 
 
 # Load the data
+
 
 #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
 
