@@ -19,8 +19,36 @@ st.set_page_config(
 
 #>>>>>>>>>>>>>>>>>>>>>> Streamlit app
 
-st.title("JO Paris 2024")
-st.markdown("#### Titre")
+#Title & intro
+
+st.title('🏅 Paris JO 2024 - Data Visualization Project')
+st.markdown("""
+    **Welcome to the Paris 2024 Olympic Games data visualization dashboard.** 
+    This project is developed as part of a *Le Wagon* bootcamp, and it showcases data from the 
+    **Paris 2024 Olympic games**.
+    """)
+
+# Data overview
+
+st.header("What this project covers:")
+
+st.markdown("""
+    - Olympic summer games history.
+    - Micro analysis of Athletes.
+    - *Macro analysis of participant Countries.
+    """)
+
+
+# Expander
+
+with st.expander("📊 French Olympic data"):
+    st.write("""
+        lists of datasets.
+             """)
+
+# Load the data
+
+#st.markdown("#### Titre")
 
 #>>>>>>>>>>>>>>>>>>>>>> Application : sidebar
 
@@ -37,7 +65,7 @@ client = bigquery.Client(credentials=credentials)
 project = "jo-paris-2024-442810"
 
 #>>>>>>>>>>>>>>>>>>>>>> Dataframes
-Dataframes = ["athletes"]
+Dataframes = ["olympics_games_summer"]
 Dataset = "dataset_v2"
 
 
@@ -50,9 +78,10 @@ def get_data_from_bigquery(query):
     return pd.DataFrame([dict(row) for row in rows])
 
 @st.cache_data(ttl=600)
-def Athlete_histo_1(athletes, x,y, color, title,barmode='relative',text_auto=False,log_x=False, log_y=False, range_x=None, range_y=None, histfunc=None, labels={}):
-  fig1 = px.histogram(athletes, x = x,y =y, color=color, title=title,barmode=barmode,text_auto=text_auto,log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, histfunc=histfunc,labels=labels)
-  fig1.show()
+def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code', animation_frame=None,log_x=False, log_y=False, range_x=None, range_y=None, labels={}):
+  line = px.line(df, x = x,y =y, color=color, title=title, hover_data=hover_data, markers=markers, animation_frame=animation_frame, log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, labels=labels)
+  #return line
+  line.show()
 
 
 #>>>>>>>>>>>>>>>>>>>>>> Perform a query
@@ -66,4 +95,4 @@ for Dataframe in Dataframes:
 
 
 #>>>>>>>>>>>>>>>>>>>>>> Graph
-Athlete_histo_1(df, x = 'country_code',y =df["code"], histfunc='count', color="country_code", title="Athletes number per country", )
+line1 = nb_line(df, x="year", y=["nb_athletes","nb_men","nb_women"], title="Number of athletes by edition")
