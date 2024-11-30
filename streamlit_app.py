@@ -28,7 +28,7 @@ with st.sidebar:
 
     st.header("Pages")
 
-    page = st.sidebar.radio('',["Home","History", "Countries", "Athletes"])
+    page = st.sidebar.radio('',["Home","History", "Countries", "Athletes","Infos"])
 
     st.multiselect(
         label="Filtrer par type",
@@ -84,20 +84,21 @@ Dataset = "dataset_v2"
 
 #>>>>>>>>>>>>>>>>>>>>>> Streamlit app
 
+#>>>>>>>>>>>>>>>>>>>>>>HOME page
+
+if page == 'Home':
 
 #Title & intro
 
-st.title('🏅 Paris JO 2024 - Data Visualization Project',
-         )
-st.markdown("""
-    **Welcome to the Paris 2024 Olympic Games data visualization dashboard.** 
-    """)
+    st.title('🏅 Paris JO 2024 - Data Visualization Project'
+             )
+    st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
 
 # Data overview
 
-st.header("What this project covers:")
+    st.header("What this project covers:")
 
-st.markdown("""
+    st.markdown("""
     - Olympic summer games history.
     - Micro analysis of Athletes.
     - *Macro analysis of participant Countries.
@@ -105,10 +106,45 @@ st.markdown("""
 
 # Expander
 
-with st.expander("📊 French Olympic data"):
-    st.write("""
-        lists of datasets.
-             """)
+    with st.expander("📊 French Olympic data"):
+        st.write("""lists of datasets.""")
+
+
+#>>>>>>>>>>>>>>>>>>>>>>History page
+
+if page == 'History':
+    
+    #Title & intro
+
+    st.title('Olympic summer Games in time ')
+    
+    st.markdown("""**A brief history of the olympic summer games.**""")
+
+if page == 'Countries':
+
+    #Title & intro
+
+    st.title('Micro analysis')
+
+    st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+
+
+if page == 'Athletes':
+
+    #Title & intro
+
+    st.title('Macro Analysis')
+
+    st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+
+
+if page == 'Infos':
+
+    st.title('sources')
+
+    st.title('Autors info')
+
+
     
 
 #>>>>>>>>>>>>>>>>>>>>>> functions
