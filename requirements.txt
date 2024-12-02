@@ -11,3 +11,4 @@ plotly
 gcsfs
 st-files-connection
 gcloud auth login
+gcloud auth application-default login
