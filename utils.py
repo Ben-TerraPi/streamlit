@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
-import pandas_gbq
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
-import matplotlib.pyplot as plt
 import numpy as np
 
 

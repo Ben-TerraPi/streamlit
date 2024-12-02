@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import pandas_gbq
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
 import plotly.figure_factory as ff
 import numpy as np
+import utils
 from utils import (
     get_data_from_bigquery,
     Athlete_histo,
