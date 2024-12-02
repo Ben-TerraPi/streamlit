@@ -1,32 +1,16 @@
 import streamlit as st
-import utils as u
+import pages.utils as u
 import pandas as pd
 import pandas_gbq
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
+from pages.utils import get_bigquery, get_data_from_bigquery
 
 # code a utiliser pour re-run l'appli  >>>>>>>>>>>>>> streamlit run streamlit_app.py
 # code pour list package >>>>>>>>>>>>>>>>>>>>>>>>>>>> pip list
 
-#>>>>>>>>>>>>>>>>>>>>>> functions
 
-
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def get_data_from_bigquery(query, _client):
-    query_job = _client.query(query)
-    rows = query_job.result()
-    return pd.DataFrame([dict(row) for row in rows])
-
-@st.cache_data(ttl=600)
-def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code', animation_frame=None,log_x=False, log_y=False, range_x=None, range_y=None, labels={}):
-    line = px.line(df, x = x,y =y, color=color, title=title, hover_data=hover_data, markers=markers, animation_frame=animation_frame, log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, labels=labels)
-    #return line
-    #line.show()
-
-
-    
 # Main
 def main():
 
@@ -37,7 +21,8 @@ def main():
     st.secrets["gcp_service_account"])
 
     #>>>>>>>>>>>>>>>>>>>>>> BQ authentification
-
+    
+    #client = get_bigquery()
     client = bigquery.Client(credentials=credentials)
 
     #>>>>>>>>>>>>>>>>>>>>>> Dataframes
@@ -57,6 +42,7 @@ def main():
 
 
     dataset = "dataset_v2"
+
 
     
     #>>>>>>>>>>>>>>>>>>>>> Streamlit page
@@ -133,14 +119,8 @@ def main():
 
     #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
 
-    # for dataframe in dataframes:      
-    #     query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
-    #     df = get_data_from_bigquery(query,client)
-
     query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
     df = get_data_from_bigquery(query,client)
-
-
 
     # Expander
 
