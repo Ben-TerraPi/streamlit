@@ -4,3 +4,7 @@ google-auth
 google.resumable.media  
 google.api.core
 google-auth-oauthlib
+pandas
+pandas-gbq
+db-dtypes
+plotly
