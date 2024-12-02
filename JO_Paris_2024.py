@@ -1,11 +1,32 @@
 import streamlit as st
-import pages.utils as u
 import pandas as pd
 import pandas_gbq
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
-from pages.utils import get_bigquery, get_data_from_bigquery
+import matplotlib.pyplot as plt
+import plotly.figure_factory as ff
+import numpy as np
+from utils import (
+    get_data_from_bigquery,
+    Athlete_histo,
+    count_and_sort_editions,
+    nb_line,
+    Selection,
+    percentile,
+    gender_ratio,
+    Bar_chart_1,
+    Country_color,
+    Top,
+    score_card_1,
+    score_card_2,
+    subplots_scorecards,
+    Hist_tab_athletes_age,
+    Athlete_medals_top20,
+    Distribution_events_nb,
+    plot_histogram_with_line,
+    plot_top_10_medals_by_type,
+)
 
 # code a utiliser pour re-run l'appli  >>>>>>>>>>>>>> streamlit run streamlit_app.py
 # code pour list package >>>>>>>>>>>>>>>>>>>>>>>>>>>> pip list
@@ -28,6 +49,7 @@ def main():
     #>>>>>>>>>>>>>>>>>>>>>> Dataframes
 
     dataframes = [
+        "athletes",
         "Socio_economic_Dataset",
         "all_athlete_bio",
         "all_athlete_event_results_summer",
@@ -43,7 +65,9 @@ def main():
 
     dataset = "dataset_v2"
 
-
+    for dataframe in dataframes:
+        query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
+        locals()[dataframe] = pd.read_gbq(query, project_id=project)
     
     #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
@@ -128,13 +152,62 @@ def main():
         st.write("""lists of datasets.""")
         st.dataframe(df)
 
-
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>> Sub pages
 
     # if page == 'Sources':
 
     #     st.title('sources')
 
     #     st.title('Autors info')
+
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>> Test
+
+    # arr = np.random.normal(1, 1, size=100)
+    # fig, ax = plt.subplots()
+    # ax.hist(arr, bins=20)
+
+    #>>>>>>>>>>>>>>>>>>>>>> Graph
+
+
+    #olympics_games_summer
+    hist1 = Athlete_histo(df,
+                        x = 'country_code',
+                        y="city_host", histfunc='count',
+                        color="country_code",
+                        title="Number of summer's JO hosted by country"
+                        )
+
+    hist1.update_xaxes(categoryorder='category ascending')
+    st.plotly_chart(hist1)
+
+    #top3 summer
+    top_summer = count_and_sort_editions(df,
+                                        'country_code',
+                                        "year",
+                                        descending=True,
+                                        top_n=3
+                                        )
+    st.dataframe(top_summer)
+
+    st.line_chart(df,
+                    x="year",
+                    y=["nb_athletes",
+                    "nb_men",
+                    "nb_women"])
+    
+    line1 = nb_line(df,
+                    x="year",
+                    y=["nb_athletes",
+                    "nb_men",
+                    "nb_women"],
+                    title="Number of athletes by edition")
+    
+    st.plotly_chart(line1, use_container_width=True)
+
+
+
+
+
 
 
 
