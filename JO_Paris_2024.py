@@ -4,6 +4,7 @@ import pandas_gbq
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
+from matplotlib import pyplot
 import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
 import numpy as np
