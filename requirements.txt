@@ -4,4 +4,3 @@ google-auth
 google.resumable.media  
 google.api.core
 google-auth-oauthlib
-pip install plotly==5.24.1
