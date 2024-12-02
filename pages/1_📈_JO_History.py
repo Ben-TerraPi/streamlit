@@ -7,6 +7,7 @@ from utils import Athlete_histo
 from utils import count_and_sort_editions
 from utils import nb_line
 
+
 #>>>>>>>>>>>>>>>>>>>>>> Create API client.
 
 project = "jo-paris-2024-442810"
