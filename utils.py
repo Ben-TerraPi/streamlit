@@ -4,8 +4,23 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 import plotly.express as px
 import numpy as np
+from st_files_connection import FilesConnection
+from plotly import graph_objects as go
+import gcsfs
 
 
+# Create connection object and retrieve file contents.
+conn = st.connection('gcs', type=FilesConnection)
+
+Socio_economic_Dataset = conn.read("project_jo_paris_2024_le_wagon_1826/csv/Socio_economic_Dataset.csv", input_format="csv", ttl=600)
+athletes = conn.read("project_jo_paris_2024_le_wagon_1826/csv/athletes.csv", input_format="csv", ttl=600)
+medallists = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medallists.csv", input_format="csv", ttl=600)
+medals_total = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_total.csv", input_format="csv", ttl=600)
+Countries_Code_ISO = conn.read("project_jo_paris_2024_le_wagon_1826/csv/Countries_Code_ISO.csv", input_format="csv", ttl=600)
+all_athlete_bio = conn.read("project_jo_paris_2024_le_wagon_1826/csv/all_athlete_bio.csv", input_format="csv", ttl=600)
+athlete_id_multiple = conn.read("project_jo_paris_2024_le_wagon_1826/csv/athlete_id_multiple.csv", input_format="csv", ttl=600)
+olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/csv/olympics_games_summer.csv", input_format="csv", ttl=600)
+medals_day = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_day.csv", input_format="csv", ttl=600)
 
 #>>>>>>>>>>>>>>>>>>>>>> Create API client.
 '''
@@ -40,15 +55,15 @@ dataframes = [
     "teams",
     "Countries_Code_ISO",
     "olympics_games_summer",
-    "athlete_id_multiple"
+    #"athlete_id_multiple"
     ]
 
 
 dataset = "dataset_v2"
 
-for dataframe in dataframes:
-    query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
-    locals()[dataframe] = pd.read_gbq(query, project_id=project)
+# for dataframe in dataframes:
+#     query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
+#     locals()[dataframe] = pd.read_gbq(query, project_id=project)
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query
@@ -112,8 +127,8 @@ def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code',
 #-----------------------------------------DESIGN
 
 @st.cache_data(ttl=600)
-def Country_color(df):
-  Country_color = df["country_name"].unique().tolist()
+def Country_color():
+  Country_color = medallists["country_name"].unique().tolist()
   num_categories = len(df)
   base_palette = px.colors.qualitative.Dark24
   extended_palette = (base_palette * (num_categories // len(base_palette) + 1))[:num_categories]

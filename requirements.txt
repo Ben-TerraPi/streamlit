@@ -8,3 +8,6 @@ pandas
 pandas-gbq
 db-dtypes
 plotly
+gcsfs
+st-files-connection
+gcloud auth login
