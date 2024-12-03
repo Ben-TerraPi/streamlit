@@ -162,6 +162,18 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
 
     return fig
 
+#Top 10 countries with the most athletes
+
+def plot_top_10_athletes_pie(df):
+    # Count athletes per country
+    athlete_counts = df['country_name'].value_counts().head(10)
+
+    # Create the pie chart
+    fig = px.pie(athlete_counts, values=athlete_counts.values, names=athlete_counts.index,
+                 title='Top 10 Countries with the Most Athletes',
+                 labels={'names':'country_name'})
+    fig.show()
+
 #Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
 
 def plot_top_10_medals_by_type(df):
