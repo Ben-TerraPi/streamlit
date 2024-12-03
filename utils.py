@@ -85,6 +85,14 @@ create a dictionary with country as key and color as value
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>GRAPH
 
+#TOP editions
+
+def count_and_sort_editions(df, group_col, count_col, descending=True, top_n=None):
+  result = (df.groupby(group_col)[count_col].count().reset_index().sort_values(by=count_col, ascending=not descending))
+  if top_n:
+        result = result.head(top_n)
+  return result
+
 #Line
 
 def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code', animation_frame=None,log_x=False, log_y=False, range_x=None, range_y=None, labels={}):

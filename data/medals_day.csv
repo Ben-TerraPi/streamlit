@@ -1,0 +1,726 @@
+,medal_date,medal_type,country_name,medal_types
+0,2024-07-27,Gold Medal,"Hong Kong, China",1
+1,2024-07-27,Gold Medal,Korea,1
+2,2024-07-27,Gold Medal,Belgium,1
+3,2024-07-27,Gold Medal,Germany,1
+4,2024-07-27,Gold Medal,France,1
+5,2024-07-27,Gold Medal,Japan,1
+6,2024-07-27,Gold Medal,Kazakhstan,1
+7,2024-07-27,Gold Medal,United States,1
+8,2024-07-28,Gold Medal,Australia,1
+9,2024-07-28,Gold Medal,China,1
+10,2024-07-28,Gold Medal,Italy,1
+11,2024-07-28,Gold Medal,Uzbekistan,1
+12,2024-07-29,Gold Medal,"Hong Kong, China",1
+13,2024-07-29,Gold Medal,Australia,1
+14,2024-07-29,Gold Medal,Azerbaijan,1
+15,2024-07-29,Gold Medal,Germany,1
+16,2024-07-29,Gold Medal,Italy,1
+17,2024-07-29,Gold Medal,Romania,1
+18,2024-07-29,Gold Medal,South Africa,1
+19,2024-07-30,Gold Medal,Slovenia,1
+20,2024-07-30,Gold Medal,Australia,1
+21,2024-07-30,Gold Medal,China,1
+22,2024-07-30,Gold Medal,Ireland,1
+23,2024-07-30,Gold Medal,Italy,1
+24,2024-07-30,Gold Medal,Japan,1
+25,2024-07-30,Gold Medal,New Zealand,1
+26,2024-07-30,Gold Medal,Serbia,1
+27,2024-07-30,Gold Medal,United States,1
+28,2024-07-31,Gold Medal,Guatemala,1
+29,2024-07-31,Gold Medal,Argentina,1
+30,2024-07-31,Gold Medal,Korea,1
+31,2024-07-31,Gold Medal,Australia,1
+32,2024-07-31,Gold Medal,Georgia,1
+33,2024-07-31,Gold Medal,Croatia,1
+34,2024-07-31,Gold Medal,Japan,1
+35,2024-07-31,Gold Medal,Netherlands,1
+36,2024-07-31,Gold Medal,Sweden,1
+37,2024-07-31,Gold Medal,United States,1
+38,2024-08-01,Gold Medal,Australia,1
+39,2024-08-01,Gold Medal,Azerbaijan,1
+40,2024-08-01,Gold Medal,Canada,1
+41,2024-08-01,Gold Medal,Ecuador,1
+42,2024-08-01,Gold Medal,Hungary,1
+43,2024-08-01,Gold Medal,Netherlands,1
+44,2024-08-01,Gold Medal,New Zealand,1
+45,2024-08-01,Gold Medal,Romania,1
+46,2024-08-02,Gold Medal,Uganda,1
+47,2024-08-02,Gold Medal,AIN,1
+48,2024-08-02,Gold Medal,Korea,1
+49,2024-08-02,Gold Medal,Brazil,1
+50,2024-08-02,Gold Medal,Switzerland,1
+51,2024-08-02,Gold Medal,Czechia,1
+52,2024-08-02,Gold Medal,Spain,1
+53,2024-08-02,Gold Medal,Croatia,1
+54,2024-08-02,Gold Medal,Hungary,1
+55,2024-08-02,Gold Medal,Ireland,1
+56,2024-08-03,Gold Medal,Dominica,1
+57,2024-08-03,Gold Medal,Saint Lucia,1
+58,2024-08-03,Gold Medal,Philippines,1
+59,2024-08-03,Gold Medal,Australia,1
+60,2024-08-03,Gold Medal,Belgium,1
+61,2024-08-03,Gold Medal,Canada,1
+62,2024-08-03,Gold Medal,France,1
+63,2024-08-03,Gold Medal,Great Britain,1
+64,2024-08-03,Gold Medal,Hungary,1
+65,2024-08-03,Gold Medal,Ireland,1
+66,2024-08-03,Gold Medal,Israel,1
+67,2024-08-03,Gold Medal,Italy,1
+68,2024-08-03,Gold Medal,Norway,1
+69,2024-08-03,Gold Medal,Romania,1
+70,2024-08-03,Gold Medal,Ukraine,1
+71,2024-08-04,Gold Medal,Algeria,1
+72,2024-08-04,Gold Medal,Chile,1
+73,2024-08-04,Gold Medal,Philippines,1
+74,2024-08-04,Gold Medal,Korea,1
+75,2024-08-04,Gold Medal,Canada,1
+76,2024-08-04,Gold Medal,Germany,1
+77,2024-08-04,Gold Medal,Italy,1
+78,2024-08-04,Gold Medal,Japan,1
+79,2024-08-04,Gold Medal,Serbia,1
+80,2024-08-04,Gold Medal,Sweden,1
+81,2024-08-04,Gold Medal,Chinese Taipei,1
+82,2024-08-04,Gold Medal,Ukraine,1
+83,2024-08-05,Gold Medal,Korea,1
+84,2024-08-05,Gold Medal,Australia,1
+85,2024-08-05,Gold Medal,Brazil,1
+86,2024-08-05,Gold Medal,Denmark,1
+87,2024-08-05,Gold Medal,France,1
+88,2024-08-05,Gold Medal,Japan,1
+89,2024-08-05,Gold Medal,Kenya,1
+90,2024-08-05,Gold Medal,Netherlands,1
+91,2024-08-05,Gold Medal,New Zealand,1
+92,2024-08-05,Gold Medal,Sweden,1
+93,2024-08-06,Gold Medal,Bahrain,1
+94,2024-08-06,Gold Medal,Australia,1
+95,2024-08-06,Gold Medal,Canada,1
+96,2024-08-06,Gold Medal,China,1
+97,2024-08-06,Gold Medal,Cuba,1
+98,2024-08-06,Gold Medal,Germany,1
+99,2024-08-06,Gold Medal,Greece,1
+100,2024-08-06,Gold Medal,Ireland,1
+101,2024-08-06,Gold Medal,Japan,1
+102,2024-08-06,Gold Medal,Netherlands,1
+103,2024-08-07,Gold Medal,Morocco,1
+104,2024-08-07,Gold Medal,IR Iran,1
+105,2024-08-07,Gold Medal,Korea,1
+106,2024-08-07,Gold Medal,Cuba,1
+107,2024-08-07,Gold Medal,Spain,1
+108,2024-08-07,Gold Medal,Jamaica,1
+109,2024-08-07,Gold Medal,Japan,1
+110,2024-08-07,Gold Medal,Netherlands,1
+111,2024-08-07,Gold Medal,Poland,1
+112,2024-08-07,Gold Medal,Thailand,1
+113,2024-08-07,Gold Medal,Ukraine,1
+114,2024-08-08,Gold Medal,Botswana,1
+115,2024-08-08,Gold Medal,Pakistan,1
+116,2024-08-08,Gold Medal,Korea,1
+117,2024-08-08,Gold Medal,IR Iran,1
+118,2024-08-08,Gold Medal,Austria,1
+119,2024-08-08,Gold Medal,Bulgaria,1
+120,2024-08-08,Gold Medal,Germany,1
+121,2024-08-08,Gold Medal,France,1
+122,2024-08-08,Gold Medal,Great Britain,1
+123,2024-08-08,Gold Medal,Italy,1
+124,2024-08-08,Gold Medal,Japan,1
+125,2024-08-09,Gold Medal,Algeria,1
+126,2024-08-09,Gold Medal,Dominican Republic,1
+127,2024-08-09,Gold Medal,Tunisia,1
+128,2024-08-09,Gold Medal,Austria,1
+129,2024-08-09,Gold Medal,Belgium,1
+130,2024-08-09,Gold Medal,Brazil,1
+131,2024-08-09,Gold Medal,Canada,1
+132,2024-08-09,Gold Medal,Czechia,1
+133,2024-08-09,Gold Medal,Great Britain,1
+134,2024-08-09,Gold Medal,Italy,1
+135,2024-08-09,Gold Medal,Kenya,1
+136,2024-08-09,Gold Medal,New Zealand,1
+137,2024-08-10,Gold Medal,Slovenia,1
+138,2024-08-10,Gold Medal,Egypt,1
+139,2024-08-10,Gold Medal,Ethiopia,1
+140,2024-08-10,Gold Medal,Portugal,1
+141,2024-08-10,Gold Medal,IR Iran,1
+142,2024-08-10,Gold Medal,Czechia,1
+143,2024-08-10,Gold Medal,Spain,1
+144,2024-08-10,Gold Medal,Sweden,1
+145,2024-08-10,Gold Medal,Chinese Taipei,1
+146,2024-08-11,Gold Medal,Bahrain,1
+147,2024-08-11,Gold Medal,China,1
+148,2024-08-11,Gold Medal,Denmark,1
+149,2024-08-11,Gold Medal,Hungary,1
+150,2024-08-11,Gold Medal,Italy,1
+151,2024-08-11,Gold Medal,New Zealand,1
+152,2024-08-11,Gold Medal,Serbia,1
+153,2024-07-27,Gold Medal,China,2
+154,2024-07-28,Gold Medal,Korea,2
+155,2024-07-28,Gold Medal,France,2
+156,2024-07-28,Gold Medal,United States,2
+157,2024-07-29,Gold Medal,Korea,2
+158,2024-07-29,Gold Medal,Canada,2
+159,2024-07-29,Gold Medal,China,2
+160,2024-07-29,Gold Medal,France,2
+161,2024-07-29,Gold Medal,Great Britain,2
+162,2024-07-29,Gold Medal,Japan,2
+163,2024-07-30,Gold Medal,Great Britain,2
+164,2024-07-31,Gold Medal,Great Britain,2
+165,2024-08-01,Gold Medal,China,2
+166,2024-08-01,Gold Medal,Italy,2
+167,2024-08-02,Gold Medal,China,2
+168,2024-08-02,Gold Medal,Netherlands,2
+169,2024-08-03,Gold Medal,Korea,2
+170,2024-08-03,Gold Medal,Germany,2
+171,2024-08-03,Gold Medal,Netherlands,2
+172,2024-08-05,Gold Medal,China,2
+173,2024-08-05,Gold Medal,Germany,2
+174,2024-08-05,Gold Medal,Great Britain,2
+175,2024-08-05,Gold Medal,Italy,2
+176,2024-08-05,Gold Medal,United States,2
+177,2024-08-08,Gold Medal,Indonesia,2
+178,2024-08-08,Gold Medal,Netherlands,2
+179,2024-08-08,Gold Medal,New Zealand,2
+180,2024-08-08,Gold Medal,Uzbekistan,2
+181,2024-08-09,Gold Medal,Bulgaria,2
+182,2024-08-09,Gold Medal,Spain,2
+183,2024-08-09,Gold Medal,Hungary,2
+184,2024-08-09,Gold Medal,Netherlands,2
+185,2024-08-09,Gold Medal,Uzbekistan,2
+186,2024-08-10,Gold Medal,Canada,2
+187,2024-08-10,Gold Medal,France,2
+188,2024-08-10,Gold Medal,Georgia,2
+189,2024-08-10,Gold Medal,Japan,2
+190,2024-08-10,Gold Medal,Kenya,2
+191,2024-08-11,Gold Medal,Japan,2
+192,2024-08-11,Gold Medal,Netherlands,2
+193,2024-08-11,Gold Medal,United States,2
+194,2024-07-27,Gold Medal,Australia,3
+195,2024-07-28,Gold Medal,Japan,3
+196,2024-07-31,Gold Medal,China,3
+197,2024-07-31,Gold Medal,France,3
+198,2024-08-02,Gold Medal,Australia,3
+199,2024-08-02,Gold Medal,France,3
+200,2024-08-02,Gold Medal,Great Britain,3
+201,2024-08-03,Gold Medal,China,3
+202,2024-08-04,Gold Medal,China,3
+203,2024-08-06,Gold Medal,United States,3
+204,2024-08-07,Gold Medal,China,3
+205,2024-08-07,Gold Medal,United States,3
+206,2024-08-08,Gold Medal,United States,3
+207,2024-08-09,Gold Medal,Germany,3
+208,2024-08-09,Gold Medal,Japan,3
+209,2024-08-09,Gold Medal,United States,3
+210,2024-08-10,Gold Medal,Norway,3
+211,2024-08-10,Gold Medal,New Zealand,3
+212,2024-08-10,Gold Medal,Uzbekistan,3
+213,2024-08-01,Gold Medal,United States,4
+214,2024-08-07,Gold Medal,Australia,4
+215,2024-08-08,Gold Medal,China,4
+216,2024-08-09,Gold Medal,China,4
+217,2024-08-03,Gold Medal,United States,5
+218,2024-08-04,Gold Medal,United States,5
+219,2024-08-10,Gold Medal,United States,5
+220,2024-08-10,Gold Medal,China,6
+221,2024-08-03,Bronze Medal,United States,7
+222,2024-07-27,Bronze Medal,Korea,1
+223,2024-07-27,Bronze Medal,Belgium,1
+224,2024-07-27,Bronze Medal,China,1
+225,2024-07-27,Bronze Medal,Spain,1
+226,2024-07-27,Bronze Medal,France,1
+227,2024-07-27,Bronze Medal,Great Britain,1
+228,2024-07-27,Bronze Medal,Hungary,1
+229,2024-07-27,Bronze Medal,Japan,1
+230,2024-07-27,Bronze Medal,Kazakhstan,1
+231,2024-07-27,Bronze Medal,Sweden,1
+232,2024-07-27,Bronze Medal,South Africa,1
+233,2024-07-28,Bronze Medal,Egypt,1
+234,2024-07-28,Bronze Medal,Republic of Moldova,1
+235,2024-07-28,Bronze Medal,Canada,1
+236,2024-07-28,Bronze Medal,China,1
+237,2024-07-28,Bronze Medal,France,1
+238,2024-07-28,Bronze Medal,Great Britain,1
+239,2024-07-28,Bronze Medal,India,1
+240,2024-07-28,Bronze Medal,Italy,1
+241,2024-07-28,Bronze Medal,Kazakhstan,1
+242,2024-07-28,Bronze Medal,Mexico,1
+243,2024-07-28,Bronze Medal,Sweden,1
+244,2024-07-28,Bronze Medal,United States,1
+245,2024-07-29,Bronze Medal,"Hong Kong, China",1
+246,2024-07-29,Bronze Medal,Republic of Moldova,1
+247,2024-07-29,Bronze Medal,Slovakia,1
+248,2024-07-29,Bronze Medal,Canada,1
+249,2024-07-29,Bronze Medal,Switzerland,1
+250,2024-07-29,Bronze Medal,France,1
+251,2024-07-29,Bronze Medal,Great Britain,1
+252,2024-07-29,Bronze Medal,Croatia,1
+253,2024-07-29,Bronze Medal,Ireland,1
+254,2024-07-29,Bronze Medal,Türkiye,1
+255,2024-07-29,Bronze Medal,Ukraine,1
+256,2024-07-29,Bronze Medal,South Africa,1
+257,2024-07-30,Bronze Medal,Kosovo,1
+258,2024-07-30,Bronze Medal,Guatemala,1
+259,2024-07-30,Bronze Medal,Tajikistan,1
+260,2024-07-30,Bronze Medal,Australia,1
+261,2024-07-30,Bronze Medal,Brazil,1
+262,2024-07-30,Bronze Medal,France,1
+263,2024-07-30,Bronze Medal,India,1
+264,2024-07-30,Bronze Medal,Italy,1
+265,2024-07-30,Bronze Medal,Poland,1
+266,2024-07-31,Bronze Medal,"Hong Kong, China",1
+267,2024-07-31,Bronze Medal,Austria,1
+268,2024-07-31,Bronze Medal,Belgium,1
+269,2024-07-31,Bronze Medal,Canada,1
+270,2024-07-31,Bronze Medal,China,1
+271,2024-07-31,Bronze Medal,Greece,1
+272,2024-07-31,Bronze Medal,Netherlands,1
+273,2024-07-31,Bronze Medal,Poland,1
+274,2024-07-31,Bronze Medal,Romania,1
+275,2024-07-31,Bronze Medal,United States,1
+276,2024-08-01,Bronze Medal,Portugal,1
+277,2024-08-01,Bronze Medal,Australia,1
+278,2024-08-01,Bronze Medal,Switzerland,1
+279,2024-08-01,Bronze Medal,India,1
+280,2024-08-01,Bronze Medal,Ireland,1
+281,2024-08-01,Bronze Medal,Israel,1
+282,2024-08-01,Bronze Medal,Japan,1
+283,2024-08-01,Bronze Medal,Netherlands,1
+284,2024-08-01,Bronze Medal,New Zealand,1
+285,2024-08-01,Bronze Medal,United States,1
+286,2024-08-01,Bronze Medal,Uzbekistan,1
+287,2024-08-02,Bronze Medal,Tajikistan,1
+288,2024-08-02,Bronze Medal,Korea,1
+289,2024-08-02,Bronze Medal,Australia,1
+290,2024-08-02,Bronze Medal,Czechia,1
+291,2024-08-02,Bronze Medal,Great Britain,1
+292,2024-08-02,Bronze Medal,Japan,1
+293,2024-08-02,Bronze Medal,Poland,1
+294,2024-08-02,Bronze Medal,Uzbekistan,1
+295,2024-08-03,Bronze Medal,Lithuania,1
+296,2024-08-03,Bronze Medal,Grenada,1
+297,2024-08-03,Bronze Medal,Korea,1
+298,2024-08-03,Bronze Medal,Canada,1
+299,2024-08-03,Bronze Medal,Hungary,1
+300,2024-08-03,Bronze Medal,Italy,1
+301,2024-08-03,Bronze Medal,Jamaica,1
+302,2024-08-04,Bronze Medal,Indonesia,1
+303,2024-08-04,Bronze Medal,Cabo Verde,1
+304,2024-08-04,Bronze Medal,Malaysia,1
+305,2024-08-04,Bronze Medal,Tajikistan,1
+306,2024-08-04,Bronze Medal,DPR Korea,1
+307,2024-08-04,Bronze Medal,Australia,1
+308,2024-08-04,Bronze Medal,Belgium,1
+309,2024-08-04,Bronze Medal,Canada,1
+310,2024-08-04,Bronze Medal,Cuba,1
+311,2024-08-04,Bronze Medal,Georgia,1
+312,2024-08-04,Bronze Medal,Greece,1
+313,2024-08-04,Bronze Medal,Ireland,1
+314,2024-08-04,Bronze Medal,Japan,1
+315,2024-08-05,Bronze Medal,Lithuania,1
+316,2024-08-05,Bronze Medal,Malaysia,1
+317,2024-08-05,Bronze Medal,Brazil,1
+318,2024-08-05,Bronze Medal,France,1
+319,2024-08-05,Bronze Medal,Greece,1
+320,2024-08-05,Bronze Medal,Croatia,1
+321,2024-08-05,Bronze Medal,Italy,1
+322,2024-08-05,Bronze Medal,Japan,1
+323,2024-08-05,Bronze Medal,Kenya,1
+324,2024-08-05,Bronze Medal,Netherlands,1
+325,2024-08-05,Bronze Medal,Romania,1
+326,2024-08-05,Bronze Medal,Chinese Taipei,1
+327,2024-08-05,Bronze Medal,United States,1
+328,2024-08-06,Bronze Medal,Philippines,1
+329,2024-08-06,Bronze Medal,IR Iran,1
+330,2024-08-06,Bronze Medal,Australia,1
+331,2024-08-06,Bronze Medal,Italy,1
+332,2024-08-06,Bronze Medal,Japan,1
+333,2024-08-06,Bronze Medal,Kazakhstan,1
+334,2024-08-06,Bronze Medal,Kenya,1
+335,2024-08-06,Bronze Medal,Kyrgyzstan,1
+336,2024-08-06,Bronze Medal,Netherlands,1
+337,2024-08-06,Bronze Medal,Thailand,1
+338,2024-08-06,Bronze Medal,Türkiye,1
+339,2024-08-06,Bronze Medal,Chinese Taipei,1
+340,2024-08-07,Bronze Medal,Philippines,1
+341,2024-08-07,Bronze Medal,Armenia,1
+342,2024-08-07,Bronze Medal,Peru,1
+343,2024-08-07,Bronze Medal,Tunisia,1
+344,2024-08-07,Bronze Medal,Zambia,1
+345,2024-08-07,Bronze Medal,IR Iran,1
+346,2024-08-07,Bronze Medal,Brazil,1
+347,2024-08-07,Bronze Medal,Canada,1
+348,2024-08-07,Bronze Medal,China,1
+349,2024-08-07,Bronze Medal,Cuba,1
+350,2024-08-07,Bronze Medal,Germany,1
+351,2024-08-07,Bronze Medal,Spain,1
+352,2024-08-07,Bronze Medal,Great Britain,1
+353,2024-08-07,Bronze Medal,Croatia,1
+354,2024-08-07,Bronze Medal,Italy,1
+355,2024-08-07,Bronze Medal,Japan,1
+356,2024-08-07,Bronze Medal,Kenya,1
+357,2024-08-07,Bronze Medal,Norway,1
+358,2024-08-07,Bronze Medal,Poland,1
+359,2024-08-07,Bronze Medal,Thailand,1
+360,2024-08-07,Bronze Medal,Türkiye,1
+361,2024-08-07,Bronze Medal,United States,1
+362,2024-08-08,Bronze Medal,Grenada,1
+363,2024-08-08,Bronze Medal,Morocco,1
+364,2024-08-08,Bronze Medal,EOR,1
+365,2024-08-08,Bronze Medal,DPR Korea,1
+366,2024-08-08,Bronze Medal,Azerbaijan,1
+367,2024-08-08,Bronze Medal,Belgium,1
+368,2024-08-08,Bronze Medal,Brazil,1
+369,2024-08-08,Bronze Medal,Canada,1
+370,2024-08-08,Bronze Medal,Cuba,1
+371,2024-08-08,Bronze Medal,Denmark,1
+372,2024-08-08,Bronze Medal,Great Britain,1
+373,2024-08-08,Bronze Medal,Hungary,1
+374,2024-08-08,Bronze Medal,India,1
+375,2024-08-08,Bronze Medal,Italy,1
+376,2024-08-08,Bronze Medal,Jamaica,1
+377,2024-08-08,Bronze Medal,Mexico,1
+378,2024-08-08,Bronze Medal,New Zealand,1
+379,2024-08-08,Bronze Medal,Sweden,1
+380,2024-08-08,Bronze Medal,Chinese Taipei,1
+381,2024-08-08,Bronze Medal,Ukraine,1
+382,2024-08-09,Bronze Medal,Argentina,1
+383,2024-08-09,Bronze Medal,Republic of Moldova,1
+384,2024-08-09,Bronze Medal,Singapore,1
+385,2024-08-09,Bronze Medal,Australia,1
+386,2024-08-09,Bronze Medal,Austria,1
+387,2024-08-09,Bronze Medal,Brazil,1
+388,2024-08-09,Bronze Medal,Canada,1
+389,2024-08-09,Bronze Medal,Switzerland,1
+390,2024-08-09,Bronze Medal,Denmark,1
+391,2024-08-09,Bronze Medal,Ecuador,1
+392,2024-08-09,Bronze Medal,France,1
+393,2024-08-09,Bronze Medal,Greece,1
+394,2024-08-09,Bronze Medal,India,1
+395,2024-08-09,Bronze Medal,Poland,1
+396,2024-08-09,Bronze Medal,Uzbekistan,1
+397,2024-08-10,Bronze Medal,Puerto Rico,1
+398,2024-08-10,Bronze Medal,Albania,1
+399,2024-08-10,Bronze Medal,Algeria,1
+400,2024-08-10,Bronze Medal,Bahrain,1
+401,2024-08-10,Bronze Medal,Côte d'Ivoire,1
+402,2024-08-10,Bronze Medal,Qatar,1
+403,2024-08-10,Bronze Medal,AIN,1
+404,2024-08-10,Bronze Medal,Austria,1
+405,2024-08-10,Bronze Medal,Azerbaijan,1
+406,2024-08-10,Bronze Medal,Brazil,1
+407,2024-08-10,Bronze Medal,China,1
+408,2024-08-10,Bronze Medal,Czechia,1
+409,2024-08-10,Bronze Medal,Ecuador,1
+410,2024-08-10,Bronze Medal,Hungary,1
+411,2024-08-10,Bronze Medal,Kenya,1
+412,2024-08-10,Bronze Medal,Kyrgyzstan,1
+413,2024-08-10,Bronze Medal,Serbia,1
+414,2024-08-11,Bronze Medal,Colombia,1
+415,2024-08-11,Bronze Medal,Albania,1
+416,2024-08-11,Bronze Medal,Puerto Rico,1
+417,2024-08-11,Bronze Medal,Korea,1
+418,2024-08-11,Bronze Medal,IR Iran,1
+419,2024-08-11,Bronze Medal,Azerbaijan,1
+420,2024-08-11,Bronze Medal,Cuba,1
+421,2024-08-11,Bronze Medal,Spain,1
+422,2024-08-11,Bronze Medal,Kenya,1
+423,2024-08-11,Bronze Medal,New Zealand,1
+424,2024-08-11,Bronze Medal,United States,1
+425,2024-07-27,Bronze Medal,Italy,2
+426,2024-07-27,Bronze Medal,United States,2
+427,2024-07-28,Bronze Medal,Brazil,2
+428,2024-07-30,Bronze Medal,Korea,2
+429,2024-07-30,Bronze Medal,United States,2
+430,2024-07-31,Bronze Medal,Australia,2
+431,2024-07-31,Bronze Medal,Germany,2
+432,2024-07-31,Bronze Medal,Great Britain,2
+433,2024-08-01,Bronze Medal,Spain,2
+434,2024-08-01,Bronze Medal,Great Britain,2
+435,2024-08-02,Bronze Medal,Switzerland,2
+436,2024-08-02,Bronze Medal,Greece,2
+437,2024-08-03,Bronze Medal,Australia,2
+438,2024-08-03,Bronze Medal,Brazil,2
+439,2024-08-03,Bronze Medal,France,2
+440,2024-08-03,Bronze Medal,Netherlands,2
+441,2024-08-03,Bronze Medal,Chinese Taipei,2
+442,2024-08-04,Bronze Medal,Dominican Republic,2
+443,2024-08-04,Bronze Medal,Korea,2
+444,2024-08-04,Bronze Medal,China,2
+445,2024-08-04,Bronze Medal,Spain,2
+446,2024-08-04,Bronze Medal,Great Britain,2
+447,2024-08-04,Bronze Medal,Ukraine,2
+448,2024-08-05,Bronze Medal,Germany,2
+449,2024-08-05,Bronze Medal,Great Britain,2
+450,2024-08-06,Bronze Medal,DPR Korea,2
+451,2024-08-06,Bronze Medal,China,2
+452,2024-08-06,Bronze Medal,Great Britain,2
+453,2024-08-07,Bronze Medal,Australia,2
+454,2024-08-07,Bronze Medal,France,2
+455,2024-08-07,Bronze Medal,Kyrgyzstan,2
+456,2024-08-08,Bronze Medal,Australia,2
+457,2024-08-08,Bronze Medal,China,2
+458,2024-08-08,Bronze Medal,Spain,2
+459,2024-08-08,Bronze Medal,Netherlands,2
+460,2024-08-09,Bronze Medal,Belgium,2
+461,2024-08-09,Bronze Medal,Great Britain,2
+462,2024-08-09,Bronze Medal,Hungary,2
+463,2024-08-09,Bronze Medal,Netherlands,2
+464,2024-08-10,Bronze Medal,Korea,2
+465,2024-08-10,Bronze Medal,Cuba,2
+466,2024-08-10,Bronze Medal,Italy,2
+467,2024-08-10,Bronze Medal,Netherlands,2
+468,2024-08-10,Bronze Medal,Norway,2
+469,2024-08-10,Bronze Medal,Türkiye,2
+470,2024-08-11,Bronze Medal,Australia,2
+471,2024-08-11,Bronze Medal,Great Britain,2
+472,2024-07-29,Bronze Medal,Japan,3
+473,2024-08-01,Bronze Medal,China,3
+474,2024-08-02,Bronze Medal,Canada,3
+475,2024-08-02,Bronze Medal,China,3
+476,2024-08-02,Bronze Medal,United States,3
+477,2024-08-03,Bronze Medal,Japan,3
+478,2024-08-04,Bronze Medal,France,3
+479,2024-08-04,Bronze Medal,United States,3
+480,2024-08-05,Bronze Medal,China,3
+481,2024-08-06,Bronze Medal,United States,3
+482,2024-08-08,Bronze Medal,Bulgaria,3
+483,2024-08-08,Bronze Medal,United States,3
+484,2024-08-09,Bronze Medal,Germany,3
+485,2024-08-10,Bronze Medal,Denmark,3
+486,2024-08-10,Bronze Medal,United States,3
+487,2024-07-31,Bronze Medal,France,4
+488,2024-08-09,Bronze Medal,China,4
+489,2024-08-09,Bronze Medal,Italy,4
+490,2024-08-09,Bronze Medal,United States,4
+491,2024-08-10,Bronze Medal,Great Britain,4
+492,2024-08-02,Bronze Medal,France,5
+493,2024-08-03,Bronze Medal,Great Britain,5
+494,2024-07-29,Bronze Medal,United States,6
+495,2024-07-27,Silver Medal,Mongolia,1
+496,2024-07-27,Silver Medal,Fiji,1
+497,2024-07-27,Silver Medal,Tunisia,1
+498,2024-07-27,Silver Medal,Korea,1
+499,2024-07-27,Silver Medal,Canada,1
+500,2024-07-27,Silver Medal,Great Britain,1
+501,2024-07-27,Silver Medal,Italy,1
+502,2024-07-28,Silver Medal,Kosovo,1
+503,2024-07-28,Silver Medal,Korea,1
+504,2024-07-28,Silver Medal,Brazil,1
+505,2024-07-28,Silver Medal,China,1
+506,2024-07-28,Silver Medal,France,1
+507,2024-07-28,Silver Medal,Great Britain,1
+508,2024-07-28,Silver Medal,Italy,1
+509,2024-07-28,Silver Medal,Poland,1
+510,2024-07-29,Silver Medal,Korea,1
+511,2024-07-29,Silver Medal,Italy,1
+512,2024-07-29,Silver Medal,Sweden,1
+513,2024-07-30,Silver Medal,DPR Korea,1
+514,2024-07-30,Silver Medal,Canada,1
+515,2024-07-30,Silver Medal,China,1
+516,2024-07-30,Silver Medal,France,1
+517,2024-07-30,Silver Medal,Georgia,1
+518,2024-07-30,Silver Medal,Italy,1
+519,2024-07-30,Silver Medal,Mexico,1
+520,2024-07-30,Silver Medal,Türkiye,1
+521,2024-07-31,Silver Medal,DPR Korea,1
+522,2024-07-31,Silver Medal,Switzerland,1
+523,2024-07-31,Silver Medal,China,1
+524,2024-07-31,Silver Medal,France,1
+525,2024-07-31,Silver Medal,Great Britain,1
+526,2024-07-31,Silver Medal,Japan,1
+527,2024-07-31,Silver Medal,Netherlands,1
+528,2024-07-31,Silver Medal,New Zealand,1
+529,2024-08-01,Silver Medal,Spain,1
+530,2024-08-01,Silver Medal,France,1
+531,2024-08-01,Silver Medal,Great Britain,1
+532,2024-08-01,Silver Medal,Georgia,1
+533,2024-08-01,Silver Medal,Greece,1
+534,2024-08-01,Silver Medal,Israel,1
+535,2024-08-01,Silver Medal,Italy,1
+536,2024-08-01,Silver Medal,Netherlands,1
+537,2024-08-01,Silver Medal,New Zealand,1
+538,2024-08-01,Silver Medal,Romania,1
+539,2024-08-01,Silver Medal,Ukraine,1
+540,2024-08-01,Silver Medal,South Africa,1
+541,2024-08-02,Silver Medal,Ethiopia,1
+542,2024-08-02,Silver Medal,AIN,1
+543,2024-08-02,Silver Medal,Germany,1
+544,2024-08-02,Silver Medal,France,1
+545,2024-08-02,Silver Medal,Israel,1
+546,2024-08-02,Silver Medal,Italy,1
+547,2024-08-02,Silver Medal,Japan,1
+548,2024-08-02,Silver Medal,Mexico,1
+549,2024-08-02,Silver Medal,Netherlands,1
+550,2024-08-02,Silver Medal,New Zealand,1
+551,2024-08-02,Silver Medal,Sweden,1
+552,2024-08-03,Silver Medal,AIN,1
+553,2024-08-03,Silver Medal,Brazil,1
+554,2024-08-03,Silver Medal,Germany,1
+555,2024-08-03,Silver Medal,Denmark,1
+556,2024-08-03,Silver Medal,Croatia,1
+557,2024-08-03,Silver Medal,Jamaica,1
+558,2024-08-03,Silver Medal,Japan,1
+559,2024-08-03,Silver Medal,Kazakhstan,1
+560,2024-08-03,Silver Medal,Netherlands,1
+561,2024-08-03,Silver Medal,New Zealand,1
+562,2024-08-04,Silver Medal,Armenia,1
+563,2024-08-04,Silver Medal,AIN,1
+564,2024-08-04,Silver Medal,Germany,1
+565,2024-08-04,Silver Medal,Spain,1
+566,2024-08-04,Silver Medal,Hungary,1
+567,2024-08-04,Silver Medal,Jamaica,1
+568,2024-08-04,Silver Medal,Netherlands,1
+569,2024-08-04,Silver Medal,Sweden,1
+570,2024-08-05,Silver Medal,Ethiopia,1
+571,2024-08-05,Silver Medal,Colombia,1
+572,2024-08-05,Silver Medal,Korea,1
+573,2024-08-05,Silver Medal,Australia,1
+574,2024-08-05,Silver Medal,Brazil,1
+575,2024-08-05,Silver Medal,Spain,1
+576,2024-08-05,Silver Medal,Great Britain,1
+577,2024-08-05,Silver Medal,Kenya,1
+578,2024-08-05,Silver Medal,New Zealand,1
+579,2024-08-05,Silver Medal,Thailand,1
+580,2024-08-05,Silver Medal,Ukraine,1
+581,2024-08-06,Silver Medal,Saint Lucia,1
+582,2024-08-06,Silver Medal,Uganda,1
+583,2024-08-06,Silver Medal,Chile,1
+584,2024-08-06,Silver Medal,Switzerland,1
+585,2024-08-06,Silver Medal,Jamaica,1
+586,2024-08-06,Silver Medal,Japan,1
+587,2024-08-06,Silver Medal,Kyrgyzstan,1
+588,2024-08-06,Silver Medal,United States,1
+589,2024-08-07,Silver Medal,Armenia,1
+590,2024-08-07,Silver Medal,Cyprus,1
+591,2024-08-07,Silver Medal,Lithuania,1
+592,2024-08-07,Silver Medal,Azerbaijan,1
+593,2024-08-07,Silver Medal,Cuba,1
+594,2024-08-07,Silver Medal,Denmark,1
+595,2024-08-07,Silver Medal,Ecuador,1
+596,2024-08-07,Silver Medal,France,1
+597,2024-08-07,Silver Medal,New Zealand,1
+598,2024-08-07,Silver Medal,Romania,1
+599,2024-08-07,Silver Medal,Thailand,1
+600,2024-08-08,Silver Medal,Jordan,1
+601,2024-08-08,Silver Medal,Portugal,1
+602,2024-08-08,Silver Medal,Argentina,1
+603,2024-08-08,Silver Medal,Canada,1
+604,2024-08-08,Silver Medal,Ecuador,1
+605,2024-08-08,Silver Medal,India,1
+606,2024-08-08,Silver Medal,Italy,1
+607,2024-08-08,Silver Medal,Japan,1
+608,2024-08-08,Silver Medal,Netherlands,1
+609,2024-08-08,Silver Medal,Thailand,1
+610,2024-08-08,Silver Medal,Türkiye,1
+611,2024-08-08,Silver Medal,Ukraine,1
+612,2024-08-09,Silver Medal,Bahrain,1
+613,2024-08-09,Silver Medal,Lithuania,1
+614,2024-08-09,Silver Medal,Republic of Moldova,1
+615,2024-08-09,Silver Medal,Portugal,1
+616,2024-08-09,Silver Medal,Slovenia,1
+617,2024-08-09,Silver Medal,Azerbaijan,1
+618,2024-08-09,Silver Medal,Bulgaria,1
+619,2024-08-09,Silver Medal,Brazil,1
+620,2024-08-09,Silver Medal,Canada,1
+621,2024-08-09,Silver Medal,Germany,1
+622,2024-08-09,Silver Medal,France,1
+623,2024-08-09,Silver Medal,Italy,1
+624,2024-08-09,Silver Medal,Japan,1
+625,2024-08-09,Silver Medal,Mexico,1
+626,2024-08-09,Silver Medal,Norway,1
+627,2024-08-09,Silver Medal,New Zealand,1
+628,2024-08-09,Silver Medal,Serbia,1
+629,2024-08-09,Silver Medal,Sweden,1
+630,2024-08-09,Silver Medal,Türkiye,1
+631,2024-08-09,Silver Medal,Ukraine,1
+632,2024-08-09,Silver Medal,United States,1
+633,2024-08-09,Silver Medal,South Africa,1
+634,2024-08-10,Silver Medal,Egypt,1
+635,2024-08-10,Silver Medal,Panama,1
+636,2024-08-10,Silver Medal,Armenia,1
+637,2024-08-10,Silver Medal,Botswana,1
+638,2024-08-10,Silver Medal,IR Iran,1
+639,2024-08-10,Silver Medal,Belgium,1
+640,2024-08-10,Silver Medal,Brazil,1
+641,2024-08-10,Silver Medal,Canada,1
+642,2024-08-10,Silver Medal,Spain,1
+643,2024-08-10,Silver Medal,Israel,1
+644,2024-08-10,Silver Medal,Italy,1
+645,2024-08-10,Silver Medal,Kenya,1
+646,2024-08-10,Silver Medal,Kyrgyzstan,1
+647,2024-08-10,Silver Medal,Netherlands,1
+648,2024-08-10,Silver Medal,Ukraine,1
+649,2024-08-10,Silver Medal,South Africa,1
+650,2024-08-11,Silver Medal,Ethiopia,1
+651,2024-08-11,Silver Medal,Korea,1
+652,2024-08-11,Silver Medal,IR Iran,1
+653,2024-08-11,Silver Medal,Australia,1
+654,2024-08-11,Silver Medal,Georgia,1
+655,2024-08-11,Silver Medal,Croatia,1
+656,2024-08-11,Silver Medal,Poland,1
+657,2024-07-27,Silver Medal,Australia,2
+658,2024-07-27,Silver Medal,France,2
+659,2024-07-27,Silver Medal,United States,2
+660,2024-07-28,Silver Medal,Japan,2
+661,2024-07-29,Silver Medal,Australia,2
+662,2024-07-29,Silver Medal,United States,2
+663,2024-07-31,Silver Medal,Australia,2
+664,2024-07-31,Silver Medal,Germany,2
+665,2024-07-31,Silver Medal,Hungary,2
+666,2024-07-31,Silver Medal,Italy,2
+667,2024-07-31,Silver Medal,United States,2
+668,2024-08-01,Silver Medal,Brazil,2
+669,2024-08-01,Silver Medal,United States,2
+670,2024-08-02,Silver Medal,Korea,2
+671,2024-08-02,Silver Medal,China,2
+672,2024-08-02,Silver Medal,Romania,2
+673,2024-08-03,Silver Medal,Korea,2
+674,2024-08-03,Silver Medal,Australia,2
+675,2024-08-03,Silver Medal,Canada,2
+676,2024-08-03,Silver Medal,France,2
+677,2024-08-03,Silver Medal,Israel,2
+678,2024-08-04,Silver Medal,Great Britain,2
+679,2024-08-04,Silver Medal,Italy,2
+680,2024-08-04,Silver Medal,United States,2
+681,2024-08-05,Silver Medal,France,2
+682,2024-08-06,Silver Medal,Great Britain,2
+683,2024-08-07,Silver Medal,China,2
+684,2024-08-07,Silver Medal,Great Britain,2
+685,2024-08-07,Silver Medal,Kazakhstan,2
+686,2024-08-08,Silver Medal,IR Iran,2
+687,2024-08-08,Silver Medal,Australia,2
+688,2024-08-08,Silver Medal,China,2
+689,2024-08-08,Silver Medal,France,2
+690,2024-08-09,Silver Medal,Colombia,2
+691,2024-08-09,Silver Medal,IR Iran,2
+692,2024-08-09,Silver Medal,Australia,2
+693,2024-08-09,Silver Medal,China,2
+694,2024-08-09,Silver Medal,Hungary,2
+695,2024-08-10,Silver Medal,Australia,2
+696,2024-08-10,Silver Medal,Germany,2
+697,2024-08-10,Silver Medal,Great Britain,2
+698,2024-08-10,Silver Medal,Hungary,2
+699,2024-08-10,Silver Medal,Poland,2
+700,2024-08-10,Silver Medal,Uzbekistan,2
+701,2024-08-11,Silver Medal,Germany,2
+702,2024-08-11,Silver Medal,France,2
+703,2024-08-11,Silver Medal,United States,2
+704,2024-07-29,Silver Medal,Great Britain,3
+705,2024-07-30,Silver Medal,United States,3
+706,2024-08-02,Silver Medal,Great Britain,3
+707,2024-08-02,Silver Medal,United States,3
+708,2024-08-03,Silver Medal,China,3
+709,2024-08-04,Silver Medal,Australia,3
+710,2024-08-04,Silver Medal,China,3
+711,2024-08-05,Silver Medal,China,3
+712,2024-08-06,Silver Medal,China,3
+713,2024-08-08,Silver Medal,Germany,3
+714,2024-08-08,Silver Medal,United States,3
+715,2024-08-09,Silver Medal,Great Britain,3
+716,2024-08-10,Silver Medal,United States,3
+717,2024-07-28,Silver Medal,United States,4
+718,2024-07-29,Silver Medal,China,4
+719,2024-08-05,Silver Medal,United States,4
+720,2024-08-07,Silver Medal,United States,4
+721,2024-08-10,Silver Medal,France,4
+722,2024-08-10,Silver Medal,Japan,4
+723,2024-07-29,Silver Medal,France,5
+724,2024-08-03,Silver Medal,United States,6

@@ -1,0 +1,93 @@
+,country_name,Gold Medal,Silver Medal,Bronze Medal,Total,country_code
+0,Indonesia,2,0,0,2,IDN
+1,Dominica,1,0,0,1,DMA
+2,Pakistan,1,0,0,1,PAK
+3,Algeria,2,0,1,3,DZA
+4,Guatemala,1,0,1,2,GTM
+5,Morocco,1,0,1,2,MAR
+6,Cabo Verde,0,0,1,1,CPV
+7,Côte d'Ivoire,0,0,1,1,CIV
+8,EOR,0,0,1,1,
+9,Peru,0,0,1,1,PER
+10,Qatar,0,0,1,1,QAT
+11,Singapore,0,0,1,1,SGP
+12,Slovakia,0,0,1,1,SVK
+13,Zambia,0,0,1,1,ZMB
+14,Czechia,3,0,2,5,CZE
+15,"Hong Kong, China",2,0,2,4,HKG
+16,Philippines,2,0,2,4,PHL
+17,Dominican Republic,1,0,2,3,DOM
+18,Albania,0,0,2,2,ALB
+19,Grenada,0,0,2,2,GRD
+20,Malaysia,0,0,2,2,MYS
+21,Puerto Rico,0,0,2,2,PRI
+22,Ireland,4,0,3,7,IRL
+23,Austria,2,0,3,5,AUT
+24,Tajikistan,0,0,3,3,TJK
+25,Chinese Taipei,2,0,5,7,TWN
+26,Slovenia,2,1,0,3,SVN
+27,Botswana,1,1,0,2,BWA
+28,Chile,1,1,0,2,CHL
+29,Saint Lucia,1,1,0,2,LCA
+30,Uganda,1,1,0,2,UGA
+31,Cyprus,0,1,0,1,CYP
+32,Fiji,0,1,0,1,FJI
+33,Jordan,0,1,0,1,JOR
+34,Mongolia,0,1,0,1,MNG
+35,Panama,0,1,0,1,PAN
+36,Serbia,3,1,1,5,SRB
+37,Bahrain,2,1,1,4,BHR
+38,Argentina,1,1,1,3,ARG
+39,Egypt,1,1,1,3,EGY
+40,Tunisia,1,1,1,3,TUN
+41,Kosovo,0,1,1,2,XKX
+42,Norway,4,1,3,8,NOR
+43,Bulgaria,3,1,3,7,BGR
+44,Republic of Moldova,0,1,3,4,MDA
+45,India,0,1,5,6,IND
+46,Belgium,3,1,6,10,BEL
+47,Cuba,2,1,6,9,CUB
+48,Greece,1,1,6,8,GRC
+49,Portugal,1,2,1,4,PRT
+50,Ecuador,1,2,2,5,ECU
+51,Lithuania,0,2,2,4,LTU
+52,Uzbekistan,8,2,3,13,UZB
+53,Azerbaijan,2,2,3,7,AZE
+54,Croatia,2,2,3,7,HRV
+55,DPR Korea,0,2,4,6,
+56,Kyrgyzstan,0,2,4,6,KGZ
+57,Kenya,4,2,5,11,KEN
+58,Denmark,2,2,5,9,DNK
+59,Switzerland,1,2,5,8,CHE
+60,Ethiopia,1,3,0,4,ETH
+61,Georgia,3,3,1,7,GEO
+62,AIN,1,3,1,5,
+63,Armenia,0,3,1,4,ARM
+64,Colombia,0,3,1,4,COL
+65,Jamaica,1,3,2,6,JAM
+66,South Africa,1,3,2,6,ZAF
+67,Thailand,1,3,2,6,THA
+68,Mexico,0,3,2,5,MEX
+69,Kazakhstan,1,3,3,7,KAZ
+70,Türkiye,0,3,5,8,TUR
+71,Romania,3,4,2,9,ROU
+72,Sweden,4,4,3,11,SWE
+73,Poland,1,4,5,10,POL
+74,Spain,5,4,9,18,ESP
+75,Israel,1,5,1,7,ISR
+76,Ukraine,3,5,4,12,UKR
+77,IR Iran,3,6,3,12,
+78,New Zealand,10,7,3,20,NZL
+79,Hungary,6,7,6,19,HUN
+80,Brazil,3,7,10,20,BRA
+81,Canada,9,7,11,27,CAN
+82,Netherlands,15,7,12,34,NLD
+83,Korea,13,9,10,32,
+84,Japan,20,12,13,45,JPN
+85,Germany,12,13,8,33,DEU
+86,Italy,12,13,15,40,ITA
+87,Australia,18,19,16,53,AUS
+88,Great Britain,14,22,29,65,GBR
+89,France,16,26,22,64,FRA
+90,China,40,27,24,91,CHN
+91,United States,40,44,42,126,USA
