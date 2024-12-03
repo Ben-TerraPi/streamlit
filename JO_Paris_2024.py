@@ -3,7 +3,9 @@ import numpy as np
 import pandas as pd
 import pandas_gbq
 from google.cloud import bigquery
+from google.cloud import storage
 from google.oauth2 import service_account
+from google.cloud import storage
 import plotly.express as px
 from plotly import graph_objects as go
 import gcsfs
@@ -74,19 +76,35 @@ def main():
     #     query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
     #     locals()[dataframe] = pd.read_gbq(query, project_id=project)
 
-    # Create connection object and retrieve file contents.
-    # conn = st.connection('gcs', type=FilesConnection)
+    #Create connection object and retrieve file contents.
+    #conn = st.experimental_connection('gcs', type=FilesConnection)
 
-    # Socio_economic_Dataset = conn.read("project_jo_paris_2024_le_wagon_1826/csv/Socio_economic_Dataset.csv", input_format="csv", ttl=600)
-    # athletes = conn.read("project_jo_paris_2024_le_wagon_1826/csv/athletes.csv", input_format="csv", ttl=600)
-    # medallists = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medallists.csv", input_format="csv", ttl=600)
-    # medals_total = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_total.csv", input_format="csv", ttl=600)
-    # Countries_Code_ISO = conn.read("project_jo_paris_2024_le_wagon_1826/csv/Countries_Code_ISO.csv", input_format="csv", ttl=600)
-    # all_athlete_bio = conn.read("project_jo_paris_2024_le_wagon_1826/csv/all_athlete_bio.csv", input_format="csv", ttl=600)
-    # athlete_id_multiple = conn.read("project_jo_paris_2024_le_wagon_1826/csv/athlete_id_multiple.csv", input_format="csv", ttl=600)
-    # olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/csv/olympics_games_summer.csv", input_format="csv", ttl=600)
+    # Socio_economic_Dataset = conn.read("project_jo_paris_2024_le_wagon_1826/Socio_economic_Dataset.csv", input_format="csv", ttl=600)
+    # st.dataframe(Socio_economic_Dataset)
+    # athletes = conn.read("project_jo_paris_2024_le_wagon_1826/athletes.csv", input_format="csv", ttl=600)
+    # st.dataframe(athletes)
+    # medallists = conn.read("project_jo_paris_2024_le_wagon_1826/medallists.csv", input_format="csv", ttl=600)
+    # st.dataframe(medallists)
+    # medals_total = conn.read("project_jo_paris_2024_le_wagon_1826/medals_total.csv", input_format="csv", ttl=600)
+    # st.dataframe(medals_total)
+    # Countries_Code_ISO = conn.read("project_jo_paris_2024_le_wagon_1826/Countries_Code_ISO.csv", input_format="csv", ttl=600)
+    # st.dataframe(Countries_Code_ISO)
+    # all_athlete_bio = conn.read("project_jo_paris_2024_le_wagon_1826/all_athlete_bio.csv", input_format="csv", ttl=600)
+    # st.dataframe(all_athlete_bio)
+    # athlete_id_multiple = conn.read("project_jo_paris_2024_le_wagon_1826/athlete_id_multiple.csv", input_format="csv", ttl=600)
+    # st.dataframe(athlete_id_multiple)
+    
     # medals_day = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_day.csv", input_format="csv", ttl=600)
-        
+    # st.dataframe(medals_day)
+    
+    
+    
+    
+    
+    
+    
+    
+
     #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
 
@@ -161,22 +179,17 @@ def main():
 
     #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
 
-    query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
-    df = get_data_from_bigquery(query,client)
+    #query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
+    #df = get_data_from_bigquery(query,client)
+    conn = st.connection("gcs", type=FilesConnection)
+          
+    olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/olympics_games_summer.csv", input_format="csv", ttl=600)
 
     # Expander
 
     with st.expander("Olympic datastes"):
         st.write("""lists of datasets.""")
-        st.dataframe(df)
-        # st.dataframe(Socio_economic_Dataset)
-        # st.dataframe(athletes)
-        # st.dataframe(medallists)
-        # st.dataframe(medals_total)
-        # st.dataframe(Countries_Code_ISO)
-        # st.dataframe(all_athlete_bio)
-        # st.dataframe(athlete_id_multiple)
-        # st.dataframe(medals_day)
+        st.dataframe(olympics_games_summer)
 
 
 
@@ -198,7 +211,7 @@ def main():
 
 
     #olympics_games_summer
-    hist1 = Athlete_histo_1(df,
+    hist1 = Athlete_histo_1(olympics_games_summer,
                         x = 'country_code',
                         y="city_host", histfunc='count',
                         color="country_code",
@@ -209,7 +222,7 @@ def main():
     st.plotly_chart(hist1)
 
     #top3 summer
-    top_summer = count_and_sort_editions(df,
+    top_summer = count_and_sort_editions(olympics_games_summer,
                                         'country_code',
                                         "year",
                                         descending=True,
@@ -217,13 +230,13 @@ def main():
                                         )
     st.dataframe(top_summer)
 
-    st.line_chart(df,
+    st.line_chart(olympics_games_summer,
                     x="year",
                     y=["nb_athletes",
                     "nb_men",
                     "nb_women"])
     
-    line1 = nb_line(df,
+    line1 = nb_line(olympics_games_summer,
                     x="year",
                     y=["nb_athletes",
                     "nb_men",
