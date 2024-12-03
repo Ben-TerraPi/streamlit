@@ -8,28 +8,36 @@ from google.oauth2 import service_account
 from google.cloud import storage
 import plotly.express as px
 from plotly import graph_objects as go
+import seaborn as sns
+from plotly.subplots import make_subplots
 import gcsfs
 from st_files_connection import FilesConnection
+import pickle
+import re
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
+    Country_color,
     Athlete_histo_1,
     count_and_sort_editions,
+    plot_olympics_trends,
     nb_line,
-    # Selection,
-    # percentile,
-    # gender_ratio,
-    # Bar_chart_1,
-    # Country_color,
-    # Top,
-    # score_card_1,
-    # score_card_2,
-    # subplots_scorecards,
-    # Hist_tab_athletes_age,
-    # Athlete_medals_top20,
-    # Distribution_events_nb,
-    # plot_histogram_with_line,
-    # plot_top_10_medals_by_type
+    Selection,
+    percentile,
+    gender_ratio,
+    Bar_chart_1,
+    Top,
+    doublegraph_athletes_countries_top,
+    score_card_1,
+    score_card_2,
+    subplots_scorecards,
+    Hist_tab_athletes_age,
+    Athlete_medals_top20,
+    Distribution_events_nb,
+    Athletes_number_per_sport_family,
+    user1,
+    plot_histogram_with_line,
+    create_country_indicator
 )
 
 
@@ -50,6 +58,22 @@ def main():
     
     #client = get_bigquery()
     client = bigquery.Client(credentials=credentials)
+
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Perform a query 
+
+
+    # query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
+    # olympics_games_summer = get_data_from_bigquery(query,client)
+
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Connection to GBQ
+
+
+    olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
+
+    olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
+
 
     #>>>>>>>>>>>>>>>>>>>>>> Dataframes
 
@@ -74,36 +98,6 @@ def main():
     #     query = f"SELECT * FROM `jo-paris-2024-442810.{dataset}.{dataframe}`"
     #     locals()[dataframe] = pd.read_gbq(query, project_id=project)
 
-    #Create connection object and retrieve file contents.
-    #conn = st.experimental_connection('gcs', type=FilesConnection)
-
-    # Socio_economic_Dataset = conn.read("project_jo_paris_2024_le_wagon_1826/Socio_economic_Dataset.csv", input_format="csv", ttl=600)
-    # st.dataframe(Socio_economic_Dataset)
-    # athletes = conn.read("project_jo_paris_2024_le_wagon_1826/athletes.csv", input_format="csv", ttl=600)
-    # st.dataframe(athletes)
-    # medallists = conn.read("project_jo_paris_2024_le_wagon_1826/medallists.csv", input_format="csv", ttl=600)
-    # st.dataframe(medallists)
-    # medals_total = conn.read("project_jo_paris_2024_le_wagon_1826/medals_total.csv", input_format="csv", ttl=600)
-    # st.dataframe(medals_total)
-    # Countries_Code_ISO = conn.read("project_jo_paris_2024_le_wagon_1826/Countries_Code_ISO.csv", input_format="csv", ttl=600)
-    # st.dataframe(Countries_Code_ISO)
-    # all_athlete_bio = conn.read("project_jo_paris_2024_le_wagon_1826/all_athlete_bio.csv", input_format="csv", ttl=600)
-    # st.dataframe(all_athlete_bio)
-    # athlete_id_multiple = conn.read("project_jo_paris_2024_le_wagon_1826/athlete_id_multiple.csv", input_format="csv", ttl=600)
-    # st.dataframe(athlete_id_multiple)
-    
-    # medals_day = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_day.csv", input_format="csv", ttl=600)
-    # st.dataframe(medals_day)
-
-
-    
-    
-    
-    
-    
-    
-    
-    
 
     #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
@@ -177,16 +171,6 @@ def main():
     - *Macro analysis of participant Countries.
     """)
 
-    #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
-
-    # query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
-    # olympics_games_summer = get_data_from_bigquery(query,client)
-
-    # Connection to GBQ
-    #conn = st.connection("gcs", type=FilesConnection)   
-    #olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/olympics_games_summer.csv", input_format="csv", ttl=600)
-    olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
-    olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
     # Expander
     with st.expander("Olympic datastes"):
         st.write("""lists of datasets.""")
