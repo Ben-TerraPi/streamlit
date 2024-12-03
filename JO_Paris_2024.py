@@ -200,7 +200,8 @@ def main():
         st.dataframe(olympics_games_summer)
         st.write("""Athletes_medallists:""")
         st.dataframe(Athletes_medallists)
-
+        st.write("""medals_total:""")
+        st.dataframe(medals_total)       
 
 
 

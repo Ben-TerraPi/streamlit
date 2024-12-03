@@ -39,24 +39,30 @@ st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dash
 
 
 name = st.selectbox("Select name of athlete",
-                    Athletes_medallists.name
+                    Athletes_medallists.name,
+                    index = None
                     )
-# gender = st.selectbox("Select gender of athlete",
-#                     Athletes_medallists.gender.unique()
-# )
-# country_name = st.selectbox("Select country of athlete",
-#                     Athletes_medallists.country_name.unique()
-# )
-# Age = st.selectbox("Select age of athlete",
-#                     Athletes_medallists.Age.unique()
-# )
-# sport_family = st.selectbox("Select sport family of athlete",
-#                             Athletes_medallists.sport_family.unique()
-#                             ) 
-# sport_group = st.selectbox("Select sport group of athlete",
-#                     Athletes_medallists.sport_group.unique()
-#)
+gender = st.selectbox("Select gender of athlete",
+                    Athletes_medallists.gender.unique(),
+                    index = None
+)
+country_name = st.selectbox("Select country of athlete",
+                    Athletes_medallists.country_name.unique(),
+                    index = None
+)
+Age = st.selectbox("Select age of athlete",
+                    Athletes_medallists.Age.unique(),
+                    index = None
+)
+sport_family = st.selectbox("Select sport family of athlete",
+                            Athletes_medallists.sport_family.unique(),
+                            index = None
+                            ) 
+sport_group = st.selectbox("Select sport group of athlete",
+                    Athletes_medallists.sport_group.unique(),
+                    index = None
+)
 
 #1
-nice_tab = user1(Athletes_medallists, name = name)# , gender = gender, country_name = country_name , Age = Age, sport_family = sport_family, sport_group = sport_group)
+nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_family = sport_family, sport_group = sport_group)
 st.plotly_chart(nice_tab)
