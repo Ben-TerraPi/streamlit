@@ -22,6 +22,7 @@ from utils import (
     count_and_sort_editions,
     plot_olympics_trends,
     nb_line,
+    nb_line1,
     Selection,
     percentile,
     gender_ratio,
@@ -36,7 +37,8 @@ from utils import (
     Distribution_events_nb,
     Athletes_number_per_sport_family,
     user1,
-    create_country_indicator
+    create_country_indicator,
+    plot_top_10_medals_by_type
 )
 
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
@@ -80,24 +82,42 @@ top_summer = count_and_sort_editions(olympics_games_summer,
                                         )
 #st.dataframe(top_summer)
 
-st.line_chart(olympics_games_summer,
-              x="year",
-              y=["nb_athletes",
-                 "nb_men",
-                 "nb_women"])
-    
-lin = nb_line(olympics_games_summer,
-                x="year",
-                y=["nb_athletes",
+
+line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False),
+                _x="year",
+                _y=["nb_athletes",
                    "nb_men",
                    "nb_women"],
-                   title="Number of athletes by edition",
-                   _markers=True,
-                   _hover_data='country_code'
-                   )
+                 _title="Number of athletes by edition",
+                 _markers=True,
+                 _hover_data='country_code'
+                 )
+line1 = line1.update_traces(mode="lines+markers")
+st.plotly_chart(line1)
+
+
+
+
+# line1 = nb_line1(olympics_games_summer,
+#                 x="year",
+#                 y=["nb_athletes",
+#                    "nb_men",
+#                    "nb_women"],
+#                  title="Number of athletes by edition"
+#                  )
+# st.plotly_chart(line1)
     
-st.plotly_chart(lin)
+# lin = nb_line(olympics_games_summer,
+#                 _x="year",
+#                 _y=["nb_athletes",
+#                    "nb_men",
+#                    "nb_women"],
+#                    _title="Number of athletes by edition",
+#                    _markers=True,
+#                    _hover_data='country_code'
+#                    )
+    
+#st.plotly_chart(lin)
 
-# line2 = plot_olympics_trends(olympics_games_summer)
-# st.plotly_chart(line2)
-
+line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
+st.plotly_chart(line2)

@@ -93,7 +93,12 @@ def count_and_sort_editions(df, group_col, count_col, descending=True, top_n=Non
         result = result.head(top_n)
   return result
 
-#Line
+#line
+def nb_line1(df, x,y, title, color=None, markers=True, hover_data='country_code', animation_frame=None,log_x=False, log_y=False, range_x=None, range_y=None, labels={}):
+  line = px.scatter(df, x = x,y =y, color=color, title=title, hover_data=hover_data, markers=markers, animation_frame=animation_frame, log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, labels=labels)
+  return line
+
+#Scatter
 
 def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
             _hover_data=None,_size=None, _marginal_x=None,
