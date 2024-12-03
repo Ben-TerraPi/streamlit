@@ -179,17 +179,17 @@ def main():
 
     #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
 
-    #query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
-    #df = get_data_from_bigquery(query,client)
-    conn = st.connection("gcs", type=FilesConnection)
+    query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
+    df = get_data_from_bigquery(query,client)
+    #conn = st.connection("gcs", type=FilesConnection)
           
-    olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/olympics_games_summer.csv", input_format="csv", ttl=600)
+    #olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/olympics_games_summer.csv", input_format="csv", ttl=600)
 
     # Expander
 
     with st.expander("Olympic datastes"):
         st.write("""lists of datasets.""")
-        st.dataframe(olympics_games_summer)
+        #st.dataframe(olympics_games_summer)
 
 
 
