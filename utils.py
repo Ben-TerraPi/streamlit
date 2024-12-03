@@ -5,11 +5,11 @@ import pandas_gbq
 from google.cloud import bigquery, storage
 from google.oauth2 import service_account
 import plotly.express as px
-from plotly import graph_objects as go
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 import gcsfs
 from st_files_connection import FilesConnection
 import seaborn as sns
-from plotly.subplots import make_subplots
 import pickle
 import re
 

@@ -7,9 +7,9 @@ from google.cloud import storage
 from google.oauth2 import service_account
 from google.cloud import storage
 import plotly.express as px
-from plotly import graph_objects as go
-import seaborn as sns
 from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+import seaborn as sns
 import gcsfs
 from st_files_connection import FilesConnection
 import pickle
@@ -67,31 +67,31 @@ def main():
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Connection to GBQ
 
 
-    olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
 
-    Athletes_medallists_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Athletes_medallists.csv','data/Athletes_medallists.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #Athletes_medallists_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Athletes_medallists.csv','data/Athletes_medallists.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
-    Countries_Code_ISO_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Countries_Code_ISO.csv','data/Countries_Code_ISO.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #Countries_Code_ISO_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Countries_Code_ISO.csv','data/Countries_Code_ISO.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Countries_Code_ISO = pd.read_csv('data/Countries_Code_ISO.csv')
 
-    Socio_economic_Dataset_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Socio_economic_Dataset.csv','data/Socio_economic_Dataset.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #Socio_economic_Dataset_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Socio_economic_Dataset.csv','data/Socio_economic_Dataset.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Socio_economic_Dataset = pd.read_csv('data/Socio_economic_Dataset.csv')
 
-    all_athlete_bio_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','all_athlete_bio.csv','data/all_athlete_bio.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #all_athlete_bio_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','all_athlete_bio.csv','data/all_athlete_bio.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     all_athlete_bio = pd.read_csv('data/all_athlete_bio.csv')
 
-    athlete_id_multiple_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','athlete_id_multiple.csv','data/athlete_id_multiple.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #athlete_id_multiple_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','athlete_id_multiple.csv','data/athlete_id_multiple.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     athlete_id_multiple = pd.read_csv('data/athlete_id_multiple.csv')
 
-    medals_day_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_day.csv','data/medals_day.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #medals_day_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_day.csv','data/medals_day.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     medals_day = pd.read_csv('data/medals_day.csv')
 
-    medals_total_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_total.csv','data/medals_total.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #medals_total_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_total.csv','data/medals_total.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     medals_total = pd.read_csv('data/medals_total.csv')
 
-    top_disciplines_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','top_disciplines.csv','data/top_disciplines.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    #top_disciplines_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','top_disciplines.csv','data/top_disciplines.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     top_disciplines = pd.read_csv('data/top_disciplines.csv')
 
 
@@ -193,10 +193,14 @@ def main():
     - *Macro analysis of participant Countries.
     """)
 
+
     # Expander
-    with st.expander("Olympic datastes"):
-        st.write("""lists of datasets.""")
+    with st.expander("Olympic dataset"):
+        st.write("""olympics_games_summer:""")
         st.dataframe(olympics_games_summer)
+        st.write("""Athletes_medallists:""")
+        st.dataframe(Athletes_medallists)
+
 
 
 
@@ -207,55 +211,6 @@ def main():
     #     st.title('sources')
 
     #     st.title('Autors info')
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>> Test
-
-    # arr = np.random.normal(1, 1, size=100)
-    # fig, ax = plt.subplots()
-    # ax.hist(arr, bins=20)
-
-    #>>>>>>>>>>>>>>>>>>>>>> Graph
-
-
-    #olympics_games_summer
-    hist1 = Athlete_histo_1(olympics_games_summer,
-                        x = 'country_code',
-                        y="city_host", histfunc='count',
-                        color="country_code",
-                        title="Number of summer's JO hosted by country"
-                        )
-
-    hist1.update_xaxes(categoryorder='category ascending')
-    st.plotly_chart(hist1)
-
-    #top3 summer
-    top_summer = count_and_sort_editions(olympics_games_summer,
-                                        'country_code',
-                                        "year",
-                                        descending=True,
-                                        top_n=3
-                                        )
-    st.dataframe(top_summer)
-
-    st.line_chart(olympics_games_summer,
-                    x="year",
-                    y=["nb_athletes",
-                    "nb_men",
-                    "nb_women"])
-    
-    line1 = nb_line(olympics_games_summer,
-                    x="year",
-                    y=["nb_athletes",
-                    "nb_men",
-                    "nb_women"],
-                    title="Number of athletes by edition")
-    
-    st.plotly_chart(line1, use_container_width=True)
-
-
-
-
-
 
 
 
