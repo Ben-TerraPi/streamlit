@@ -10,8 +10,8 @@ import plotly.express as px
 from plotly import graph_objects as go
 import gcsfs
 from st_files_connection import FilesConnection
-
 from utils import (
+    retrieve_object_from_bucket,
     get_data_from_bigquery,
     Athlete_histo_1,
     count_and_sort_editions,
@@ -31,8 +31,6 @@ from utils import (
     # plot_histogram_with_line,
     # plot_top_10_medals_by_type
 )
-
-
 
 
 # code a utiliser pour re-run l'appli  >>>>>>>>>>>>>> streamlit run streamlit_app.py
@@ -96,6 +94,8 @@ def main():
     
     # medals_day = conn.read("project_jo_paris_2024_le_wagon_1826/csv/medals_day.csv", input_format="csv", ttl=600)
     # st.dataframe(medals_day)
+
+
     
     
     
@@ -179,17 +179,18 @@ def main():
 
     #>>>>>>>>>>>>>>>>>>>>>> Perform a query 
 
-    query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
-    df = get_data_from_bigquery(query,client)
-    #conn = st.connection("gcs", type=FilesConnection)
-          
+    # query = f"SELECT * FROM `jo-paris-2024-442810.dataset_v2.olympics_games_summer`"
+    # olympics_games_summer = get_data_from_bigquery(query,client)
+
+    # Connection to GBQ
+    #conn = st.connection("gcs", type=FilesConnection)   
     #olympics_games_summer = conn.read("project_jo_paris_2024_le_wagon_1826/olympics_games_summer.csv", input_format="csv", ttl=600)
-
+    olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
     # Expander
-
     with st.expander("Olympic datastes"):
         st.write("""lists of datasets.""")
-        #st.dataframe(olympics_games_summer)
+        st.dataframe(olympics_games_summer)
 
 
 

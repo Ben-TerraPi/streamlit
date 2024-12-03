@@ -2,12 +2,13 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import pandas_gbq
-from google.cloud import bigquery
+from google.cloud import bigquery, storage
 from google.oauth2 import service_account
 import plotly.express as px
 from plotly import graph_objects as go
 import gcsfs
 from st_files_connection import FilesConnection
+
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Query
@@ -17,6 +18,36 @@ def get_data_from_bigquery(_query, _client):
     query_job = _client.query(_query)
     rows = query_job.result()
     return pd.DataFrame([dict(row) for row in rows])
+
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Connection to GCP Buckets
+def retrieve_object_from_bucket(project_id, bucket_name, object_name, destination_file_path, service_account_file):
+    
+    """
+        project_id (str): Your Google Cloud project ID.
+        bucket_name (str): The name of the GCS bucket.
+        object_name (str): The name of the object you want to retrieve.
+        destination_file_path (str): The path to save the retrieved object locally.
+    """
+    
+    #try:
+    # Initialize a GCS client
+    client = storage.Client.from_service_account_json(service_account_file)
+    print(f"client:{client}")
+    # Get the bucket
+    bucket = client.get_bucket(bucket_name)
+    print(f"client:{bucket}")
+    # Get the blob (object) from the bucket
+    blob = bucket.blob(object_name)
+    print(f"client:{blob}")
+    # Download the blob to the specified file path
+    blob.download_to_filename(destination_file_path)
+    print(f"client:{destination_file_path}")
+    print(f"Object '{object_name}' retrieved and saved to '{destination_file_path}'.")
+
+    #except Exception as e:
+    #    print(f"Error: {e}")
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Graph
 
