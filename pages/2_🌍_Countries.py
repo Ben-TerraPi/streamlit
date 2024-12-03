@@ -65,27 +65,31 @@ medals_total = pd.read_csv('data/medals_total.csv')
 
 #>>>>>>>>>>>>>>>>>>>>>> Graph
 
+#6Scorecard nb Pays
+fig_nb_pays = create_country_indicator(Athletes_medallists)
+st.plotly_chart(fig_nb_pays)
+
 #1Athlètes number per country
 hist1 = Athlete_histo_1(Athletes_medallists, x = 'country_name',y =Athletes_medallists["code"], histfunc='count', color="country_name", title="Athletes number per country")
+hist1 = hist1.update_xaxes(categoryorder='category ascending')
 st.plotly_chart(hist1)
 
 #2Medals number per country
 hist2 = Athlete_histo_1(medals_total, x = 'country_name',y =medals_total["Total"], histfunc='sum', color="country_name",range_y=[0,150],range_x=[0,92], title="Medals number per country")
+hist2 = hist2.update_xaxes(categoryorder='category ascending')
 st.plotly_chart(hist2)
 
-#3Top 10 countries with the most disciplines
-hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
-st.plotly_chart(hist3)
+# #3Top 10 countries with the most disciplines
+# hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
+# st.plotly_chart(hist3)
 
-#4Top 10 countries with the most athletes
-plot1 = plot_top_10_athletes_pie(Athletes_medallists)
-st.plotly_chart(plot1)
+# #4Top 10 countries with the most athletes
+# plot1 = plot_top_10_athletes_pie(Athletes_medallists)
+# st.plotly_chart(plot1)
 
 #5Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
 plot2 = plot_top_10_medals_by_type(medals_total)
 st.plotly_chart(plot2)
 
-#6Scorecard nb Pays
-fig_nb_pays = create_country_indicator(Athletes_medallists)
-st.plotly_chart(fig_nb_pays)
+
 

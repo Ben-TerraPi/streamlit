@@ -21,6 +21,7 @@ from utils import user1
 
 Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
+
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
 
@@ -38,6 +39,20 @@ st.title('Give it a try')
 st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
 
 
+sport_group = st.selectbox("Select sport group of athlete",
+                    Athletes_medallists.sport_group.unique(),
+                    index = None
+                    )
+sport_family = st.selectbox("Select sport family of athlete",
+                            Athletes_medallists.sport_family.unique(),
+                            index = None
+                            ) 
+
+medals = st.selectbox("Which medals",
+                          ("Gold", "Silver", "Bronze"),
+                          index=None
+                          )
+
 name = st.selectbox("Select name of athlete",
                     Athletes_medallists.name,
                     index = None
@@ -54,15 +69,8 @@ Age = st.selectbox("Select age of athlete",
                     Athletes_medallists.Age.unique(),
                     index = None
 )
-sport_family = st.selectbox("Select sport family of athlete",
-                            Athletes_medallists.sport_family.unique(),
-                            index = None
-                            ) 
-sport_group = st.selectbox("Select sport group of athlete",
-                    Athletes_medallists.sport_group.unique(),
-                    index = None
-)
+
 
 #1
-nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_family = sport_family, sport_group = sport_group)
+nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_family = sport_family, sport_group = sport_group, medals = medals)
 st.plotly_chart(nice_tab)

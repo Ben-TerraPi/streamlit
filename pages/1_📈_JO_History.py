@@ -78,7 +78,7 @@ top_summer = count_and_sort_editions(olympics_games_summer,
                                         descending=True,
                                         top_n=3
                                         )
-st.dataframe(top_summer)
+#st.dataframe(top_summer)
 
 st.line_chart(olympics_games_summer,
               x="year",
@@ -86,14 +86,18 @@ st.line_chart(olympics_games_summer,
                  "nb_men",
                  "nb_women"])
     
-line1 = nb_line(olympics_games_summer,
+lin = nb_line(olympics_games_summer,
                 x="year",
                 y=["nb_athletes",
                    "nb_men",
                    "nb_women"],
-                   title="Number of athletes by edition")
+                   title="Number of athletes by edition",
+                   _markers=True,
+                   _hover_data='country_code'
+                   )
     
-st.plotly_chart(line1, use_container_width=True)
+st.plotly_chart(lin)
 
-line2 = plot_olympics_trends(olympics_games_summer)
-st.plotly_chart(line2)
+# line2 = plot_olympics_trends(olympics_games_summer)
+# st.plotly_chart(line2)
+

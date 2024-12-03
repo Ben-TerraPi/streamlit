@@ -95,8 +95,16 @@ def count_and_sort_editions(df, group_col, count_col, descending=True, top_n=Non
 
 #Line
 
-def nb_line(df, x,y, title, color=None, markers=True, hover_data='country_code', animation_frame=None,log_x=False, log_y=False, range_x=None, range_y=None, labels={}):
-  line = px.line(df, x = x,y =y, color=color, title=title, hover_data=hover_data, markers=markers, animation_frame=animation_frame, log_x=log_x, log_y=log_y, range_x=range_x, range_y=range_y, labels=labels)
+def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
+            _hover_data=None,_size=None, _marginal_x=None,
+            _marginal_y=None, _size_max= None, _log_x = None, _log_y = None):
+  # Now use the modified DataFrame for plotting
+  if _size:
+    _df[_size] = pd.to_numeric(_df[_size], errors='coerce') #Convert to numeric, coerce errors to NaN
+    _df = _df.dropna(subset=[_size])
+  line = px.scatter(_df, x = _x,y = _y,title=_title, color=_color,
+                    hover_data=_hover_data,size=_size , marginal_x= _marginal_x,
+                    marginal_y=_marginal_y, size_max= _size_max, log_x = _log_x, log_y = _log_y)
   return line
 
 #hisotogramme + line
@@ -579,13 +587,20 @@ def Athletes_number_per_sport_family (df):
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>INTERACTIVE TABLE
 
-def user1(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None):
+def user1(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None, medals = None ):
     df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
     Table = df[['name', 'country_name','gender','Age',
        'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
        'Silver Medal','Bronze Medal','team_nb_medal','Student','Employed']]
     ref = Table.shape
     # Appliquer les filtres dynamiquement
+    if medals is not None:
+       if medals == 'Gold':
+          Table = Table[Table["Gold Medal"] >= 1]
+       if medals == 'Silver':
+          Table = Table[Table["Silver Medal"] >= 1]
+       if medals == 'Bronze':
+          Table = Table[Table["Bronze Medal"] >= 1]
     if name is not None:
         Table = Table[Table["name"].str.contains(name, na=False, case=False)]
     if gender is not None:

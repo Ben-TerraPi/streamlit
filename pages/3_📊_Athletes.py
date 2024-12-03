@@ -39,14 +39,6 @@ from utils import (
     create_country_indicator
 )
 
-
-#>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
-
-
-olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
-Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
-
-
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
 
@@ -62,6 +54,15 @@ st.set_page_config(
 st.title('Macro Analysis')
 
 st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
+
+
+olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
+Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
+
+
+#>>>>>>>>>>>>>>>>>>>>>> Graph
 
 
 #2Scorecards
