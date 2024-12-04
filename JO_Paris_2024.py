@@ -78,6 +78,9 @@ def main():
     #medals_total_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_total.csv','data/medals_total.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     medals_total = pd.read_csv('data/medals_total.csv')
 
+    #athlete_id_multiple_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','athlete_id_multiple.csv','data/athlete_id_multiple.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    athlete_id_multiple = pd.read_csv('data/athlete_id_multiple.csv')
+
     #Not work on:
     #Countries_Code_ISO_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Countries_Code_ISO.csv','data/Countries_Code_ISO.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Countries_Code_ISO = pd.read_csv('data/Countries_Code_ISO.csv')
@@ -85,8 +88,7 @@ def main():
     #all_athlete_bio_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','all_athlete_bio.csv','data/all_athlete_bio.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     all_athlete_bio = pd.read_csv('data/all_athlete_bio.csv')
 
-    #athlete_id_multiple_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','athlete_id_multiple.csv','data/athlete_id_multiple.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
-    athlete_id_multiple = pd.read_csv('data/athlete_id_multiple.csv')
+
 
     #medals_day_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_day.csv','data/medals_day.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     medals_day = pd.read_csv('data/medals_day.csv')

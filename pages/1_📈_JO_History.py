@@ -22,7 +22,10 @@ from utils import (
     nb_line
 )
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
+
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
+athlete_id_multiple = pd.read_csv('data/athlete_id_multiple.csv')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
@@ -41,7 +44,7 @@ st.markdown("""**A brief history of the olympic summer games.**""")
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tab
 
-tab1, tab2,tab3 = st.tabs(["Historic", "Countries & Sport","Athletes"])
+tab1, tab2,tab3,tab4 = st.tabs(["Historic", "Countries & Sport","Athletes", "Top participations"])
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab1
 
@@ -85,4 +88,22 @@ with tab3:
     line1 = line1.update_traces(mode="lines+markers")
     line1.add_vline(x=1980,line_color="#00FF9C",line_dash="dash",line_width=3)
     st.plotly_chart(line1)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB4
+with tab4:
+    st.write("List of athletes with at least one Olympic appearances")
+    with st.container():
+    
+        col1, col2 = st.columns(2)
+
+        with col1:
+
+                ids = athlete_id_multiple[["athlete_id",	"participations",	"name",	"gender",	"country_code"]].sort_values("participations",ascending=False)
+                st.dataframe(ids)
+                
+        with col2:
+
+            score2 = px.pie(athlete_id_multiple,
+                            names="gender")
+            st.plotly_chart(score2)
 
