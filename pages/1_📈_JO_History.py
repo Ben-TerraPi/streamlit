@@ -62,7 +62,7 @@ st.markdown("""**A brief history of the olympic summer games.**""")
 #>>>>>>>>>>>>>>>>>>>>>> Graph
 
 
-#olympics_games_summer
+#Number of summer's JO hosted by country
 hist1 = Athlete_histo_1(olympics_games_summer,
                         x = 'country_code',
                         y="city_host", histfunc='count',
@@ -73,6 +73,7 @@ hist1 = Athlete_histo_1(olympics_games_summer,
 hist1.update_xaxes(categoryorder='category ascending')
 st.plotly_chart(hist1)
 
+
 #top3 summer
 top_summer = count_and_sort_editions(olympics_games_summer,
                                         'country_code',
@@ -82,7 +83,10 @@ top_summer = count_and_sort_editions(olympics_games_summer,
                                         )
 #st.dataframe(top_summer)
 
+line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
+st.plotly_chart(line2)
 
+#Number of athletes by edition
 line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False),
                 _x="year",
                 _y=["nb_athletes",
@@ -95,29 +99,3 @@ line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inp
 line1 = line1.update_traces(mode="lines+markers")
 st.plotly_chart(line1)
 
-
-
-
-# line1 = nb_line1(olympics_games_summer,
-#                 x="year",
-#                 y=["nb_athletes",
-#                    "nb_men",
-#                    "nb_women"],
-#                  title="Number of athletes by edition"
-#                  )
-# st.plotly_chart(line1)
-    
-# lin = nb_line(olympics_games_summer,
-#                 _x="year",
-#                 _y=["nb_athletes",
-#                    "nb_men",
-#                    "nb_women"],
-#                    _title="Number of athletes by edition",
-#                    _markers=True,
-#                    _hover_data='country_code'
-#                    )
-    
-#st.plotly_chart(lin)
-
-line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
-st.plotly_chart(line2)

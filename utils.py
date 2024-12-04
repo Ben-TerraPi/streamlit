@@ -53,6 +53,18 @@ def retrieve_object_from_bucket(project_id, bucket_name, object_name, destinatio
     #except Exception as e:
     #    print(f"Error: {e}")
 
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SELECTION
+
+#Selection avec filter
+
+def Selection (df,column,selection):
+  if not selection:  # Vérifie si la liste est vide
+        return df
+  df = df[df[column].isin(selection)]
+  return (df)
+
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>COLOR
 
 def Country_color(df):
@@ -242,13 +254,6 @@ def create_country_indicator(df):
     ))
     return fig_nb_pays
 
-#Selection avec filter
-
-def Selection (df,column,selection):
-  if not selection:  # Vérifie si la liste est vide
-        return df
-  df = df[df[column].isin(selection)]
-  return (df)
 
 #percentile
 
