@@ -190,7 +190,7 @@ def main():
     st.markdown("""
     - Olympic summer games history.
     - Micro analysis of Athletes.
-    - *Macro analysis of participant Countries.
+    - Macro analysis of participant Countries.
     """)
 
 
@@ -201,7 +201,9 @@ def main():
         st.write("""Athletes_medallists:""")
         st.dataframe(Athletes_medallists)
         st.write("""medals_total:""")
-        st.dataframe(medals_total)       
+        st.dataframe(medals_total)
+        st.write("Socio_economic_Dataset")
+        st.dataframe(Socio_economic_Dataset)     
 
 
 

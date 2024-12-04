@@ -185,6 +185,15 @@ def plot_top_10_athletes_pie(df):
                  labels={'names':'country_name'})
     fig.show()
 
+#ratio medal non medal
+def piepiepie(Athletes_medallists,values=None,name=None):
+  if Athletes_medallists[Athletes_medallists["medals_number"] < 0]:
+    Athletes_medallists["medals"] = 0
+  else:
+    Athletes_medallists["medals"] = 1
+  fig = px.pie(Athletes_medallists, values=values, names=name)       
+  return fig
+
 #Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
 
 def plot_top_10_medals_by_type(df):
@@ -258,7 +267,10 @@ athletes = Athletes_medallists
 column = "gender"
 column2 = "code"
   '''
+  
   df = pd.DataFrame(Athletes_medallists.groupby("country_code")[column].value_counts(normalize=True).unstack()).reset_index().sort_values('Female', ascending= False)
+  print("----------------------------------------------------------------")
+  print(df.columns)
   df.fillna(0, inplace=True)
   df["athletes"] = Athletes_medallists.groupby("country_code")[column2].nunique().reset_index()[column2]
   df['Female'] = df['Female']*100
@@ -274,30 +286,6 @@ column2 = "code"
   df['category'] = pd.cut(df['Female'], bins=bins, labels=labels, right=True)
   df['category'] = df['category'].fillna("Nearly only men")
   return(df)
-
-def gender_ratio2(Athletes_medallists, column, column2):
-  '''
-athletes = Athletes_medallists
-column = "gender"
-column2 = "code"
-  '''
-  df = pd.DataFrame(Athletes_medallists.groupby("country_code")[column].value_counts(normalize=True).unstack()).reset_index().sort_values('Female', ascending= False)
-  df.fillna(0, inplace=True)
-  df["athletes"] = Athletes_medallists.groupby("country_code")[column2].nunique().reset_index()[column2]
-  df['Female'] = df['Female']*100
-  df['Female'] = df['Female'].round().astype(int)
-  df['Male'] = df['Male']*100
-  df['Male'] =  df['Male'].round().astype(int)
-
-  # Define bins and labels
-  bins = [0, 20, 40, 60, 80, 100]
-  labels = ['Nearly only men', '21-40%', '41-60%', '61-80%', 'Nearly only women']
-
-  # Categorize percentage values into bins
-  df['category'] = pd.cut(df['Female'], bins=bins, labels=labels, right=True)
-  df['category'] = df['category'].fillna("Nearly only men")
-  return(df)
-
 
 #Top an bottom (5)
 
@@ -573,9 +561,10 @@ def Athlete_medals_top20(df, filter, title = None, Text = None):
                                                                                         "name": top_20_names},  # Ensure names are sorted by medals_number
                         yaxes_title= "", text= Text)
   Fig1.update_layout(height=800, width=1500)
-  Fig1.update_xaxes(showline=True,linecolor="black",linewidth=1,showticklabels=False, row=2)
+  Fig1.update_xaxes(showline=True,linecolor="#00FF9C",linewidth=3,showticklabels=False, row=2)
   Fig1.update_xaxes(showticklabels=True, row=1)
   return(Fig1)
+
 
 #Distribution_events_nb
 
@@ -608,140 +597,84 @@ def Athletes_number_per_sport_family (df):
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>INTERACTIVE TABLE
 
-def user1(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None, medals = None ):
+def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_family = None, sport_group = None, medals = None ):
     df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
     Table = df[['name', 'country_name','gender','Age',
        'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
        'Silver Medal','Bronze Medal','team_nb_medal','Student','Employed']]
-    ref = Table.shape
+    Table = Table.rename(columns={'name': "Name",'country_name' : "Country","gender" : "Gender",'sport_family' : "Sport Family", 'sport_group' : "Sport Group",
+                  'events_nb' : "Events",'disciplines_nb' : "Disciplines", 'Gold Medal' : "Gold",
+                  'Silver Medal' : "Silver",'Bronze Medal' : "Bronze",'team_nb_medal' : "Team medalist"})
+    Table.fillna(0, inplace=True)
     # Appliquer les filtres dynamiquement
     if medals is not None:
        if medals == 'Gold':
-          Table = Table[Table["Gold Medal"] >= 1]
+          Table = Table[Table["Gold"] >= 1]
        if medals == 'Silver':
-          Table = Table[Table["Silver Medal"] >= 1]
+          Table = Table[Table["Silver"] >= 1]
        if medals == 'Bronze':
-          Table = Table[Table["Bronze Medal"] >= 1]
+          Table = Table[Table["Bronze"] >= 1]
     if name is not None:
-        Table = Table[Table["name"].str.contains(name, na=False, case=False)]
+        Table = Table[Table["Name"].str.contains(name, na=False, case=False)]
     if gender is not None:
-        Table = Table[Table["gender"] == gender]
+        Table = Table[Table["Gender"] == gender]
     if country_name is not None:
-        Table = Table[Table["country_name"] == country_name]
+        Table = Table[Table["Country"] == country_name]
     if Age != None:
         Table = Table[Table["Age"] == Age]
     if sport_family is not None:
-        Table = Table[Table["sport_family"] == sport_family]
+        Table = Table[Table["Sport Family"] == sport_family]
     if sport_group is not None:
-        Table = Table[Table["sport_group"] == sport_group]
+        Table = Table[Table["Sport Group"] == sport_group]
     if Table.empty:
         print("No results to display.")
         return None
 
-    comp = Table.shape
-    if ref == comp:
-        print("No filters applied.")
-        Table = Table.head(20)
-
-
     fig = go.Figure(
-        data=[
-            go.Table(
-                header=dict(
-                    values=list(Table.columns),  # Colonnes du tableau
-                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
-                    fill_color='rgb(23,184,176)',  # Doré
-                    align=['left', 'center'],
-                    font=dict(color='rgb(255, 255, 255)', size=12)  # Texte blanc
-                ),
-                cells=dict(
-                    values=[Table[col].tolist() for col in Table.columns],  # Données des cellules
-                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
-                    fill=dict(
-                        # Couleurs des cellules : Bleu pour la 1ère colonne, alternance rouge et blanc pour les autres
-                        color=[
-                            ['rgb(0,148,218)'] * len(Table) if i == 0 else
-                            ['rgb(242,171,202)' if j % 2 == 0 else 'rgb(255,255,255)' for j in range(len(Table))]
-                            for i, col in enumerate(Table.columns)
-                        ]
-                    ),
-                    align=['left', 'center'],
-                    font=dict(color='rgb(0, 0, 0)', size=10),  # Texte noir
-                    height=30
-                )
-            )
-        ]
-    )
+      data=[
+          go.Table(
+              header=dict(
+                  values=list(Table.columns),  # Colonnes du tableau
+                  line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
+                  fill_color='#b2b5c2',  # Doré
+                  align=['left', 'center'],
+                  font=dict(color='rgb(255, 255, 255)', size=12)  # Texte blanc
+              ),
+              cells=dict(
+                  values=[Table[col].tolist() for col in Table.columns],  # Données des cellules
+                  line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
+                  fill=dict(
+                      # Couleurs des cellules : Bleu pour la 1ère colonne, alternance rouge et blanc pour les autres
+                      color=[
+                          ['#d8dbc3'] * len(Table) if i == 0 else
+                          ['#f4f5ed' if j % 2 == 0 else '#dadbd5' for j in range(len(Table))]
+                          for i, col in enumerate(Table.columns)
+                      ]
+                  ),
+                  align=['left', 'center'],
+                  font=dict(color='rgb(0, 0, 0)', size=10),  # Texte noir
+                  height=30
+              ),
+              columnwidth = [30, 20, 20, 15, 20, 30, 20, 20, 15, 15, 15, 20, 20, 20]
+          )
+      ]
+  )
 
 
     return(fig)
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>athlete ratio
+#correlation
+def spearman_corr(df):
+  '''
+  df = Socio_economic_Dataset
+  '''
+  x = df.corr(method="spearman",min_periods=3, numeric_only=True)
+  x = x.sort_values(by = "Total medals",ascending = False)
+  x = x.sort_values(by = "Total medals",ascending = False, axis = 1)
+  x = x[(x["Total medals"] >= 0.4) | (x["Total medals"] <= - 0.4)]
+  x = x[["Total medals","Bronze medals","Silver medals","Gold medals"]]
+  x = x.round(2)
+  fig1 = px.imshow(x, aspect="auto",color_continuous_scale='PiYG',text_auto=True,title="Spearman correlation")
+  fig1.update_xaxes(side="top")
 
-def user2(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None, medals = None ):
-    df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
-    Table = df[['name', 'country_name','gender','Age',
-       'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
-       'Silver Medal','Bronze Medal','team_nb_medal','Student','Employed']]
-    ref = Table.shape
-    # Appliquer les filtres dynamiquement
-    if medals is not None:
-       if medals == 'Gold':
-          Table = Table[Table["Gold Medal"] >= 1]
-       if medals == 'Silver':
-          Table = Table[Table["Silver Medal"] >= 1]
-       if medals == 'Bronze':
-          Table = Table[Table["Bronze Medal"] >= 1]
-    if name is not None:
-        Table = Table[Table["name"].str.contains(name, na=False, case=False)]
-    if gender is not None:
-        Table = Table[Table["gender"] == gender]
-    if country_name is not None:
-        Table = Table[Table["country_name"] == country_name]
-    if Age != None:
-        Table = Table[Table["Age"] == Age]
-    if sport_family is not None:
-        Table = Table[Table["sport_family"] == sport_family]
-    if sport_group is not None:
-        Table = Table[Table["sport_group"] == sport_group]
-    if Table.empty:
-        print("No results to display.")
-        return None
-
-    comp = Table.shape
-    if ref == comp:
-        print("No filters applied.")
-        Table = Table.head(20)
-
-
-    fig = go.Figure(
-        data=[
-            go.Table(
-                header=dict(
-                    values=list(Table.columns),  # Colonnes du tableau
-                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
-                    fill_color='rgb(23,184,176)',  # Doré
-                    align=['left', 'center'],
-                    font=dict(color='rgb(255, 255, 255)', size=12)  # Texte blanc
-                ),
-                cells=dict(
-                    values=[Table[col].tolist() for col in Table.columns],  # Données des cellules
-                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
-                    fill=dict(
-                        # Couleurs des cellules : Bleu pour la 1ère colonne, alternance rouge et blanc pour les autres
-                        color=[
-                            ['rgb(0,148,218)'] * len(Table) if i == 0 else
-                            ['rgb(242,171,202)' if j % 2 == 0 else 'rgb(255,255,255)' for j in range(len(Table))]
-                            for i, col in enumerate(Table.columns)
-                        ]
-                    ),
-                    align=['left', 'center'],
-                    font=dict(color='rgb(0, 0, 0)', size=10),  # Texte noir
-                    height=30
-                )
-            )
-        ]
-    )
-
-
-    return(fig)
+  return(fig1)

@@ -65,12 +65,11 @@ medals_total = pd.read_csv('data/medals_total.csv')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>> Sub tab
 
-tab1, tab2 = st.tabs(["Globals", "Sport group"])
+tab1, tab2,tab3 = st.tabs(["Globals", "Sport groups","Results"])
 
 with tab1:
 
-
-    #>>>>>>>>>>>>>>>>>>>>>> Graph
+#>>>>>>>>>>>>>>>>>>>>>> Graph
     with st.container():
             col1, col2, col3 = st.columns([3, 3, 3],gap="large",vertical_alignment="bottom")
             
@@ -85,7 +84,7 @@ with tab1:
             col4.metric("Total medals", Athletes_medallists["medals_number"].count())
             col5.metric("Total sports", len(Athletes_medallists["sport_group"].unique()))
             col6.metric("Total events", len(Athletes_medallists["events"].unique()))
-            
+           
 
     #1Athletes per countries distribution
     x = Athlete_histo_1(Athletes_medallists.groupby("country_name")["code"].nunique().reset_index().groupby("code").agg({"country_name": "count"}).reset_index(),
@@ -109,20 +108,22 @@ with tab1:
                             title="Athletes number per country")
     
     hist1 = hist1.update_xaxes(categoryorder='category ascending')
+    hist1.update_layout(showlegend=False)
     st.plotly_chart(hist1)
 
 
-            #1Medals per countries distribution
-    x1 = Athlete_histo_1(Athletes_medallists.groupby("country_name")["medals_number"].nunique().reset_index().groupby("medals_number").agg({"country_name": "count"}).reset_index(),
-                x = 'medals_number', y = 'country_name', barmode = "stack", log_y = True, histfunc= 'sum', title = "Medals per countries distribution", text_auto = True)
-    x1.update_traces(marker_line_width=1.5, marker_line_color="black", marker_color="lightgreen",textangle=0)  # Ajouter un contour noir
-    x1.update_layout(
+    #1Medals per countries distribution
+    x2 = Athlete_histo_1(medals_total.groupby("country_name")["Total"].sum().reset_index().sort_values("Total", ascending= False).groupby("Total").agg({"country_name": "count"}).reset_index(),
+                    x = 'Total', y = 'country_name', barmode = "stack", log_y = False, histfunc= 'sum', title = "Medals number per countries distribution", text_auto = True)
+    x2.update_traces(marker_line_width=1.5, marker_line_color="black", marker_color="lightgreen")  # Ajouter un contour noir
+    x2.update_layout(
         bargap=0.2,  # Espace entre les barres (entre 0 et 1, où 1 signifie aucun chevauchement)
-        yaxis_title="Number of countries",
-        xaxis_title="Number of medals"
-        )
-    x1.update_xaxes(nticks=10)
-    st.plotly_chart(x1)
+        yaxis_title="Countries number",
+        xaxis_title="Medals number"
+    )
+    x2.update_xaxes(nticks=20)
+    x2.update_traces(textangle=0)
+    st.plotly_chart(x2)
 
     #2Medals number per country
     hist2 = Athlete_histo_1(medals_total,
@@ -134,12 +135,9 @@ with tab1:
                             title="Medals number per country")
     
     hist2 = hist2.update_xaxes(categoryorder='category ascending')
+    hist2.update_layout(showlegend=False)
     st.plotly_chart(hist2)
 
-
-    #5Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
-    plot2 = plot_top_10_medals_by_type(medals_total)
-    st.plotly_chart(plot2)
 
 with tab2:
 
@@ -170,4 +168,10 @@ with tab2:
         uniformtext_mode="hide",
     )
     st.plotly_chart(bar1)
+
+with tab3:
+
+    #5Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
+    plot2 = plot_top_10_medals_by_type(medals_total)
+    st.plotly_chart(plot2)
 

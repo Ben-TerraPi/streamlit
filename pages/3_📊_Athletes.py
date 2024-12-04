@@ -36,8 +36,10 @@ from utils import (
     Distribution_events_nb,
     Athletes_number_per_sport_family,
     user1,
-    create_country_indicator
+    create_country_indicator,
+    piepiepie
 )
+
 
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
@@ -63,7 +65,7 @@ Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
 
 #>>>>>>>>>>>>>>>>>>>>>> Graph
-tab1, tab2 = st.tabs(["ok", "bug"])
+tab1, tab2,tab3 = st.tabs(["Globals", "Results","Gender Equality"])
 with tab1:
         
     with st.container():
@@ -89,7 +91,31 @@ with tab1:
                         column2 = "code")
             st.plotly_chart(score2)
 
+    with st.container():
+        col1, col2, col3,col4 = st.columns([2, 2, 2, 2],gap="large",vertical_alignment="bottom")
         
+
+        col1.metric("Youngest Athlete",
+                     Athletes_medallists["Age"].min())
+        col2.metric("Youngest medalist",
+                     Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].min())
+        col3.metric("Oldest Athlete",
+                     (Athletes_medallists["Age"].max()))
+        col4.metric("Oldest medalist",
+                    Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].max())
+        
+    with st.container():
+        col5,col6,col7 = st.columns([2, 2, 2],gap="large",vertical_alignment="bottom")
+
+        col5.metric("Total events",
+                    (Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][0])+(Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][1]))
+
+        col6.metric("Women events",
+                    Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][0])         
+        col7.metric("Men events",
+                    Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][1])
+                    
+
     # score2 = score_card_2(df1 = olympics_games_summer,
     #                       df2 = Athletes_medallists,
     #                       filter = 2020,
@@ -116,6 +142,7 @@ with tab1:
                                                                                                                                                                                                          title="Athletes number per Sport Group, (events number per Sport Group)",
                                                                                                                                                                                                          textangle= 0,
                                                                                                                                                                                                          textposition = 'inside')
+    bar2.update_layout(showlegend=False)
     st.plotly_chart(bar2)
 
 
@@ -124,9 +151,24 @@ with tab1:
                 y = 'name',x='sport_family', color = 'sport_family', text='events', yaxes_title= "Athletes number",
                 title="Athletes number per Sport Family, (events number per sport_family)",
                 textangle= 0, textposition = 'outside')
+    bar1.update_layout(showlegend=False)
     st.plotly_chart(bar1)
 
 
+with tab2:
+        
+    with st.container():
+
+        col1, col2 = st.columns(2)
+        with col1:
+            pie1 = piepiepie(Athletes_medallists)
+            st.plotly_chart(pie1)
+        with col2:
+            print("hello")
+
+
+
+#
     #11nombre de médailles par athlète
     top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 médailles par athlète", Text = "ratio_medals / events_number")
     st.plotly_chart(top3)
@@ -136,42 +178,55 @@ with tab1:
 
     #12distribution of the number of events in which an athlete has participated
     distri1 = Distribution_events_nb (Athletes_medallists)
+    distri1.update_layout(showlegend=False)
     st.plotly_chart(distri1)
 
+with tab3:
 
-with tab2:
-
-    
-
-    #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
-    hist5 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False),
-                        x= "country_name" , y ='athletes', histfunc='sum',color="category",
+        #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
+    hist5 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category',
+                                                                                                               'athletes'],
+                                                                                                               ascending = False),
+                        x= "country_code" ,
+                        y ='athletes',
+                        histfunc='sum',
+                        color="category",
                         title="Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10",barmode= 'group',
-                        xaxes= False, yaxes_title= "Athletes number (log10)" ,xaxes_title=" Country", log_y= True)
+                        xaxes= False,
+                        yaxes_title= "Athletes number (log10)" ,
+                        xaxes_title=" Country",
+                        log_y= True)
     st.plotly_chart(hist5)
 
-    nice_tab = user1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False))
-    st.plotly_chart(nice_tab)
+    #9Athletes number per age
+    hist5 = Hist_tab_athletes_age(Athletes_medallists)
+    st.plotly_chart(hist5)
 
-    #3Top 10 countries with the most disciplines
-    hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).reset_index().head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
-    st.plotly_chart(hist3)
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # nice_tab = user1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False))
+    # st.plotly_chart(nice_tab)
 
-    # #9Athletes number per age
-    # hist5 = Hist_tab_athletes_age(Athletes_medallists)
-    # st.plotly_chart(hist5)
+#ADD LINE SCATTER FOR NB ATHLETE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    # #3Top 10 countries with the most disciplines
+    # hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).reset_index().head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
+    # st.plotly_chart(hist3)
+
+
 
     # #10Top 5 athletes per Sport (Group : Family)
-    # top1 = Top (Selection(Athletes_medallists,"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis", "Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists), title="Top 5 nb athletes per Countries per Sport Family")
+    # top1 = Top (Selection(Athletes_medallists,
+    #                       "sport_family",
+    #                       ["Aquatics", "Athletics","Cycling","Judo","Table Tennis", "Equestrian"]),
+    #                       top = 5,
+    #                       gpby1 = "sport_family",
+    #                       gpby2 = "country_name",
+    #                       color_palette = Country_color(Athletes_medallists),
+    #                       title="Top 5 nb athletes per Countries per Sport Family")
     # st.plotly_chart(top1)
 
     # top2 = Top (Selection(Athletes_medallists[Athletes_medallists['medals_number']>0],"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis","Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists),title= "Top 5 nb medalled athletes per Countries per Sport Family")
     # st.plotly_chart(top2)
 
-    # #7Athletes number per sport group
-    # hist3 = Athlete_histo_1(Athletes_medallists, x = 'sport_group',y =Athletes_medallists.index, histfunc='count',color="sport_group",
-    #                 title="Athletes number per sport group", category_orders = {"sport_group": Athletes_medallists["sport_group"].sort_values().unique().tolist()}, yaxes_title= "Athletes number")
-    # st.plotly_chart(hist3)
 
 
 
