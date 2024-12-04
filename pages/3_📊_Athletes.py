@@ -41,36 +41,30 @@ from utils import (
 
 
 #>>>>>>>>>>>>>>>>>>>>> Streamlit page
-
-
 st.set_page_config(
     page_title="Athletes",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Macro Analysis')
-
 st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
 
-
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
 Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-#>>>>>>>>>>>>>>>>>>>>>> Graph
-
-tab1,tab2,tab3,tab4,tab5 = st.tabs(["Indicators","Globals","Results","Gender Equality", "Distributions"])
+tab1,tab2,tab3,tab4,tab5,tab6 = st.tabs(["Indicators","Globals", "by Sports", "Distributions", "Gender Equality","Results"])
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab1
-with tab1:
-    
-        
+
+with tab1:  
+
     with st.container():
     
         col1, col2 = st.columns(2)
@@ -96,6 +90,7 @@ with tab1:
             st.plotly_chart(score2)       
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tab2
+
 with tab2:
         
     with st.container():
@@ -123,9 +118,22 @@ with tab2:
                     Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][1])
         col8.write("")
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB4
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB3
-with tab3:
+with tab4:
+    #9Athletes number per age
+    hist5 = Hist_tab_athletes_age(Athletes_medallists)
+    st.plotly_chart(hist5)
+
+    #12distribution of the number of events in which an athlete has participated
+    distri1 = Distribution_events_nb (Athletes_medallists)
+    distri1.update_layout(showlegend=False)
+    st.plotly_chart(distri1)
+
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB6
+
+with tab6:
         
     # with st.container():
 
@@ -143,12 +151,8 @@ with tab3:
     top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 médailles d'or par athlète", Text = 'Age')
     st.plotly_chart(top4)
 
-    #12distribution of the number of events in which an athlete has participated
-    distri1 = Distribution_events_nb (Athletes_medallists)
-    distri1.update_layout(showlegend=False)
-    st.plotly_chart(distri1)
-
-with tab4:
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
+with tab5:
 
         #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
     hist5 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category',
@@ -165,13 +169,11 @@ with tab4:
                         log_y= True)
     st.plotly_chart(hist5)
 
-    #9Athletes number per age
-    hist5 = Hist_tab_athletes_age(Athletes_medallists)
-    st.plotly_chart(hist5)
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
 
-with tab5:
+with tab3:
 
     #Athletes number per Sport Group, (events number per sport_group)
     bar2 = Bar_chart_1(Athletes_medallists.groupby(["disciplines"]).agg({"sport_group" : 'max',

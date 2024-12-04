@@ -65,18 +65,22 @@ def main():
 
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Connection to GBQ
 
-
+    #Work ON:
     #olympics_games_summer_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','olympics_games_summer.csv','data/olympics_games_summer.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
 
     #Athletes_medallists_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Athletes_medallists.csv','data/Athletes_medallists.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
-    #Countries_Code_ISO_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Countries_Code_ISO.csv','data/Countries_Code_ISO.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
-    Countries_Code_ISO = pd.read_csv('data/Countries_Code_ISO.csv')
-
     #Socio_economic_Dataset_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Socio_economic_Dataset.csv','data/Socio_economic_Dataset.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     Socio_economic_Dataset = pd.read_csv('data/Socio_economic_Dataset.csv')
+
+    #medals_total_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_total.csv','data/medals_total.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    medals_total = pd.read_csv('data/medals_total.csv')
+
+    #Not work on:
+    #Countries_Code_ISO_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','Countries_Code_ISO.csv','data/Countries_Code_ISO.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
+    Countries_Code_ISO = pd.read_csv('data/Countries_Code_ISO.csv')
 
     #all_athlete_bio_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','all_athlete_bio.csv','data/all_athlete_bio.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     all_athlete_bio = pd.read_csv('data/all_athlete_bio.csv')
@@ -87,9 +91,6 @@ def main():
     #medals_day_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_day.csv','data/medals_day.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     medals_day = pd.read_csv('data/medals_day.csv')
 
-    #medals_total_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','medals_total.csv','data/medals_total.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
-    medals_total = pd.read_csv('data/medals_total.csv')
-
     #top_disciplines_csv = retrieve_object_from_bucket('jo-paris-2024-442810','project_jo_paris_2024_le_wagon_1826','top_disciplines.csv','data/top_disciplines.csv','connectors/jo-paris-2024-442810-a51044237fc3.json')
     top_disciplines = pd.read_csv('data/top_disciplines.csv')
 
@@ -99,19 +100,16 @@ def main():
     #>>>>>>>>>>>>>>>>>>>>>> Dataframes
 
     dataframes = [
-        # "athletes",
         # "Socio_economic_Dataset",
         # "all_athlete_bio",
         # "all_athlete_event_results_summer",
         # "all_country_olympic_games_medal_summer",
         # "medals_total",
-        # "schedules",
-        # "teams",
+        # "medals_day",
         # "Countries_Code_ISO",
         # "olympics_games_summer",
         # "athlete_id_multiple"
         ]
-
 
     dataset = "dataset_v2"
 
@@ -129,7 +127,6 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded",
     )
-
 
     #>>>>>>>>>>>>>>>>>>>>>> Streamlit sidebar
 
@@ -171,18 +168,16 @@ def main():
             · Août 2024
         """)
 
-    #>>>>>>>>>>>>>>>>>>>>>> Streamlit app
+ 
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HOME page
 
-    #>>>>>>>>>>>>>>>>>>>>>>HOME page
 
-
-    #Title & intro
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
     st.title('🏅 Paris JO 2024 - Data Visualization Project'
                 )
     st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
 
-    # Data overview
 
     st.header("What this project covers:")
 
@@ -205,17 +200,5 @@ def main():
         st.dataframe(Socio_economic_Dataset)     
 
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>> Sub pages
-
-    # if page == 'Sources':
-
-    #     st.title('sources')
-
-    #     st.title('Autors info')
-
-
-
-#>>>>>>>>>>>>>>>>>>>>>> Footer
 if __name__ == "__main__":
     main()
