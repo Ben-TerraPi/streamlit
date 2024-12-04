@@ -17,28 +17,9 @@ import re
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
-    Country_color,
     Athlete_histo_1,
-    count_and_sort_editions,
     plot_olympics_trends,
-    nb_line,
-    nb_line1,
-    Selection,
-    percentile,
-    gender_ratio,
-    Bar_chart_1,
-    Top,
-    doublegraph_athletes_countries_top,
-    score_card_1,
-    score_card_2,
-    subplots_scorecards,
-    Hist_tab_athletes_age,
-    Athlete_medals_top20,
-    Distribution_events_nb,
-    Athletes_number_per_sport_family,
-    user1,
-    create_country_indicator,
-    plot_top_10_medals_by_type
+    nb_line
 )
 
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
