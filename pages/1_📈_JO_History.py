@@ -97,5 +97,6 @@ line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inp
                  _hover_data='country_code'
                  )
 line1 = line1.update_traces(mode="lines+markers")
+line1.add_vline(x=1980,line_color="#00FF9C",line_dash="dash",line_width=3)
 st.plotly_chart(line1)
 

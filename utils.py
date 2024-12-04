@@ -127,22 +127,7 @@ def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
 #hisotogramme + line
 
 def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic Edition"):
-    """
-    Creates a plot with a line chart and bar chart to visualize the trends
-    of the number of countries and sports across Olympic editions.
 
-    Parameters:
-    - data (DataFrame): A pandas DataFrame containing the columns:
-        - 'year': The Olympic year.
-        - 'nb_country': Number of participating countries.
-        - 'nb_sports': Number of sports.
-        - 'country_code': Associated country codes (for hover data).
-    - title (str): Title of the plot.
-
-    Returns:
-    - A Plotly Figure object.
-    """
-    # Create a subplot with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     # Line trace for number of countries
@@ -156,7 +141,7 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
             + "Number of Countries: %{y}<br>"
             + "Country Code: %{customdata}<extra></extra>"
         ),
-        customdata=data["country_code"],  # Add country code to hover data
+        customdata=data["country_code"],
     )
     fig.add_trace(line_trace, secondary_y=False)
 
@@ -165,7 +150,8 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
         x=data["year"],
         y=data["nb_sports"],
         name="Number of Sports",
-        marker=dict(opacity=0.6),  # Adjust opacity to see the line better
+        marker=dict(opacity=0.6),
+        marker_color ="#00FF9C",
         hovertemplate=(
             "Year: %{x}<br>"
             + "Number of Sports: %{y}<br>"
@@ -194,7 +180,7 @@ def plot_top_10_athletes_pie(df):
     athlete_counts = df['country_name'].value_counts().head(10)
 
     # Create the pie chart
-    fig = px.pie(athlete_counts, values=athlete_counts.values, names=athlete_counts.index,
+    fig = px.pie(athlete_counts, values=athlete_counts["values"], names=athlete_counts.index,
                  title='Top 10 Countries with the Most Athletes',
                  labels={'names':'country_name'})
     fig.show()
@@ -241,16 +227,17 @@ def plot_top_10_medals_by_type(df):
 def create_country_indicator(df):
     """
     df = Athletes_medallists
+
     """
     fig_nb_pays = go.Figure(go.Indicator(
-        mode="gauge+number",
+        mode="number",
         value= df['country_name'].nunique(),
         number={'suffix': '', 'valueformat': ',.0f'},
         title={'text': "Number of countries"},
         domain={'x': [0, 1], 'y': [0, 1]},
-        gauge={
-            'bar': {'color': "blue"}  # Couleur de la barre
-        }
+        # gauge={
+        #     'bar': {'color': "blue"}  # Couleur de la barre
+        # }
     ))
     return fig_nb_pays
 
@@ -287,6 +274,30 @@ column2 = "code"
   df['category'] = pd.cut(df['Female'], bins=bins, labels=labels, right=True)
   df['category'] = df['category'].fillna("Nearly only men")
   return(df)
+
+def gender_ratio2(Athletes_medallists, column, column2):
+  '''
+athletes = Athletes_medallists
+column = "gender"
+column2 = "code"
+  '''
+  df = pd.DataFrame(Athletes_medallists.groupby("country_code")[column].value_counts(normalize=True).unstack()).reset_index().sort_values('Female', ascending= False)
+  df.fillna(0, inplace=True)
+  df["athletes"] = Athletes_medallists.groupby("country_code")[column2].nunique().reset_index()[column2]
+  df['Female'] = df['Female']*100
+  df['Female'] = df['Female'].round().astype(int)
+  df['Male'] = df['Male']*100
+  df['Male'] =  df['Male'].round().astype(int)
+
+  # Define bins and labels
+  bins = [0, 20, 40, 60, 80, 100]
+  labels = ['Nearly only men', '21-40%', '41-60%', '61-80%', 'Nearly only women']
+
+  # Categorize percentage values into bins
+  df['category'] = pd.cut(df['Female'], bins=bins, labels=labels, right=True)
+  df['category'] = df['category'].fillna("Nearly only men")
+  return(df)
+
 
 #Top an bottom (5)
 
@@ -598,6 +609,76 @@ def Athletes_number_per_sport_family (df):
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>INTERACTIVE TABLE
 
 def user1(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None, medals = None ):
+    df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
+    Table = df[['name', 'country_name','gender','Age',
+       'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
+       'Silver Medal','Bronze Medal','team_nb_medal','Student','Employed']]
+    ref = Table.shape
+    # Appliquer les filtres dynamiquement
+    if medals is not None:
+       if medals == 'Gold':
+          Table = Table[Table["Gold Medal"] >= 1]
+       if medals == 'Silver':
+          Table = Table[Table["Silver Medal"] >= 1]
+       if medals == 'Bronze':
+          Table = Table[Table["Bronze Medal"] >= 1]
+    if name is not None:
+        Table = Table[Table["name"].str.contains(name, na=False, case=False)]
+    if gender is not None:
+        Table = Table[Table["gender"] == gender]
+    if country_name is not None:
+        Table = Table[Table["country_name"] == country_name]
+    if Age != None:
+        Table = Table[Table["Age"] == Age]
+    if sport_family is not None:
+        Table = Table[Table["sport_family"] == sport_family]
+    if sport_group is not None:
+        Table = Table[Table["sport_group"] == sport_group]
+    if Table.empty:
+        print("No results to display.")
+        return None
+
+    comp = Table.shape
+    if ref == comp:
+        print("No filters applied.")
+        Table = Table.head(20)
+
+
+    fig = go.Figure(
+        data=[
+            go.Table(
+                header=dict(
+                    values=list(Table.columns),  # Colonnes du tableau
+                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
+                    fill_color='rgb(23,184,176)',  # Doré
+                    align=['left', 'center'],
+                    font=dict(color='rgb(255, 255, 255)', size=12)  # Texte blanc
+                ),
+                cells=dict(
+                    values=[Table[col].tolist() for col in Table.columns],  # Données des cellules
+                    line_color='rgb(105, 105, 105)',  # Gris foncé pour les bordures
+                    fill=dict(
+                        # Couleurs des cellules : Bleu pour la 1ère colonne, alternance rouge et blanc pour les autres
+                        color=[
+                            ['rgb(0,148,218)'] * len(Table) if i == 0 else
+                            ['rgb(242,171,202)' if j % 2 == 0 else 'rgb(255,255,255)' for j in range(len(Table))]
+                            for i, col in enumerate(Table.columns)
+                        ]
+                    ),
+                    align=['left', 'center'],
+                    font=dict(color='rgb(0, 0, 0)', size=10),  # Texte noir
+                    height=30
+                )
+            )
+        ]
+    )
+
+
+    return(fig)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>athlete ratio
+
+def user2(df, name = None, gender = None, country_name = None,Age = None, sport_family = None, sport_group = None, medals = None ):
     df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
     Table = df[['name', 'country_name','gender','Age',
        'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',

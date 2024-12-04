@@ -63,71 +63,115 @@ Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
 
 #>>>>>>>>>>>>>>>>>>>>>> Graph
+tab1, tab2 = st.tabs(["ok", "bug"])
+with tab1:
+        
+    with st.container():
+        col1, col2 = st.columns(2)
+
+        with col1:
+                
+            score1 = score_card_1(olympics_games_summer,
+                        Athletes_medallists,
+                        "year",
+                        2020,
+                        "nb_athletes",
+                        "code"
+                        )
+            st.plotly_chart(score1)
+        
+        with col2:
+
+            score2 = score_card_2(df1 = olympics_games_summer,
+                        df2 = Athletes_medallists,
+                        filter = 2020,
+                        colum1 = "nb_athletes",
+                        column2 = "code")
+            st.plotly_chart(score2)
+
+        
+    # score2 = score_card_2(df1 = olympics_games_summer,
+    #                       df2 = Athletes_medallists,
+    #                       filter = 2020,
+    #                       colum1 = "nb_athletes",
+    #                       column2 = "code")
+    # st.plotly_chart(score2)
+
+    #Athletes number per country (top 20)
 
 
-#2Scorecards
-# score1 = subplots_scorecards(score_card_1(olympics_games_summer, Athletes_medallists, "year", 2020, "nb_athletes", "code"),score_card_2(df1 = olympics_games_summer,df2 = Athletes_medallists,filter = 2020,colum1 = "nb_athletes",column2 = "code") )
-# st.plotly_chart(score1)
-
-#Athletes number per country (top 20)
-hist1 = Athlete_histo_1(df = Athletes_medallists.groupby(["country_name"]).agg({"code" : "count"}).sort_values(by = ["code"], ascending = False).reset_index().head(20),
-                x = 'country_name',y ="code", histfunc='sum', color="country_name", title="Athletes number per country (top 20)", yaxes_title="Athletes number")
-
-st.plotly_chart(hist1)
-
-
-#Athletes number per Sport Group, (events number per sport_group)
-bar2 = Bar_chart_1(Athletes_medallists.groupby(["disciplines"]).agg({"sport_group" : 'max', "events":"nunique", "name" : "count"}).sort_values(by = ["name"], ascending = False).reset_index().groupby(["sport_group"]).agg({"disciplines":"nunique", "name" : "sum", "events":"sum"}).sort_values(by = ["name"], ascending = False).reset_index(),y = 'name',
-                    x='sport_group', color = 'sport_group', text='events', yaxes_title= "Athletes number", title="Athletes number per Sport Group, (events number per Sport Group)",textangle= 0, textposition = 'inside')
-st.plotly_chart(bar2)
-
-#7Athletes number per sport group
-hist3 = Athlete_histo_1(Athletes_medallists, x = 'sport_group',y =Athletes_medallists.index, histfunc='count',color="sport_group",
-                title="Athletes number per sport group", category_orders = {"sport_group": Athletes_medallists["sport_group"].sort_values().unique().tolist()}, yaxes_title= "Athletes number")
-st.plotly_chart(hist3)
-
-#4Athletes number per Sport Family, (events number per sport_family)
-bar1 = Bar_chart_1(Athletes_medallists.groupby(['sport_family']).agg({"disciplines":"nunique", "name" : "count", "events":"nunique"}).sort_values(by = ["name"], ascending = False).reset_index().head(32),
-            y = 'name',x='sport_family', color = 'sport_family', text='events', yaxes_title= "Athletes number",
-            title="Athletes number per Sport Family, (events number per sport_family)",
-            textangle= 0, textposition = 'outside')
-st.plotly_chart(bar1)
+    #Athletes number per Sport Group, (events number per sport_group)
+    bar2 = Bar_chart_1(Athletes_medallists.groupby(["disciplines"]).agg({"sport_group" : 'max',
+                                                                          "events":"nunique",
+                                                                            "name" : "count"}).sort_values(by = ["name"],
+                                                                                                            ascending = False).reset_index().groupby(["sport_group"]).agg({"disciplines":"nunique",
+                                                                                                                                                                            "name" : "sum",
+                                                                                                                                                                            "events":"sum"}).sort_values(by = ["name"],
+                                                                                                                                                                                                         ascending = False).reset_index(),
+                                                                                                                                                                                                         y = 'name',
+                                                                                                                                                                                                         x='sport_group',
+                                                                                                                                                                                                         color = 'sport_group',
+                                                                                                                                                                                                         text='events',
+                                                                                                                                                                                                         yaxes_title= "Athletes number",
+                                                                                                                                                                                                         title="Athletes number per Sport Group, (events number per Sport Group)",
+                                                                                                                                                                                                         textangle= 0,
+                                                                                                                                                                                                         textposition = 'inside')
+    st.plotly_chart(bar2)
 
 
-# #6Athletes number per sport family
-hist2 = Athletes_number_per_sport_family (Athletes_medallists)
-st.plotly_chart(hist2)
+    #4Athletes number per Sport Family, (events number per sport_family)
+    bar1 = Bar_chart_1(Athletes_medallists.groupby(['sport_family']).agg({"disciplines":"nunique", "name" : "count", "events":"nunique"}).sort_values(by = ["name"], ascending = False).reset_index().head(32),
+                y = 'name',x='sport_family', color = 'sport_family', text='events', yaxes_title= "Athletes number",
+                title="Athletes number per Sport Family, (events number per sport_family)",
+                textangle= 0, textposition = 'outside')
+    st.plotly_chart(bar1)
 
 
+    #11nombre de médailles par athlète
+    top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 médailles par athlète", Text = "ratio_medals / events_number")
+    st.plotly_chart(top3)
 
-# #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
-# hist4 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False),
-#                     x= "country_code" , y ='athletes', histfunc='sum',color="category",
-#                     title="Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10",barmode= 'group',
-#                     xaxes= False, yaxes_title= "Athletes number (log10)" ,xaxes_title=" Country", log_y= True)
-# st.plotly_chart(hist4)
+    top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 médailles d'or par athlète", Text = 'Age')
+    st.plotly_chart(top4)
 
-# #9Athletes number per age
-# hist5 = Hist_tab_athletes_age(Athletes_medallists)
-# st.plotly_chart(hist5)
+    #12distribution of the number of events in which an athlete has participated
+    distri1 = Distribution_events_nb (Athletes_medallists)
+    st.plotly_chart(distri1)
 
-# #10Top 5 athletes per Sport (Group : Family)
-# top1 = Top (Selection(Athletes_medallists,"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis", "Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists), title="Top 5 nb athletes per Countries per Sport Family")
-# st.plotly_chart(top1)
 
-# top2 = Top (Selection(Athletes_medallists[Athletes_medallists['medals_number']>0],"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis","Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists),title= "Top 5 nb medalled athletes per Countries per Sport Family")
-# st.plotly_chart(top2)
+with tab2:
 
-#11nombre de médailles par athlète
-top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 médailles par athlète", Text = "ratio_medals / events_number")
-st.plotly_chart(top3)
+    
 
-top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 médailles d'or par athlète", Text = 'Age')
-st.plotly_chart(top4)
+    #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
+    hist5 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False),
+                        x= "country_name" , y ='athletes', histfunc='sum',color="category",
+                        title="Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10",barmode= 'group',
+                        xaxes= False, yaxes_title= "Athletes number (log10)" ,xaxes_title=" Country", log_y= True)
+    st.plotly_chart(hist5)
 
-#12distribution of the number of events in which an athlete has participated
-distri1 = Distribution_events_nb (Athletes_medallists)
-st.plotly_chart(distri1)
+    nice_tab = user1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category','athletes'],ascending = False))
+    st.plotly_chart(nice_tab)
+
+    #3Top 10 countries with the most disciplines
+    hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).reset_index().head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
+    st.plotly_chart(hist3)
+
+    # #9Athletes number per age
+    # hist5 = Hist_tab_athletes_age(Athletes_medallists)
+    # st.plotly_chart(hist5)
+
+    # #10Top 5 athletes per Sport (Group : Family)
+    # top1 = Top (Selection(Athletes_medallists,"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis", "Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists), title="Top 5 nb athletes per Countries per Sport Family")
+    # st.plotly_chart(top1)
+
+    # top2 = Top (Selection(Athletes_medallists[Athletes_medallists['medals_number']>0],"sport_family",["Aquatics", "Athletics","Cycling","Judo","Table Tennis","Equestrian"]),top = 5, gpby1 = "sport_family", gpby2 = "country_name",color_palette = Country_color(Athletes_medallists),title= "Top 5 nb medalled athletes per Countries per Sport Family")
+    # st.plotly_chart(top2)
+
+    # #7Athletes number per sport group
+    # hist3 = Athlete_histo_1(Athletes_medallists, x = 'sport_group',y =Athletes_medallists.index, histfunc='count',color="sport_group",
+    #                 title="Athletes number per sport group", category_orders = {"sport_group": Athletes_medallists["sport_group"].sort_values().unique().tolist()}, yaxes_title= "Athletes number")
+    # st.plotly_chart(hist3)
 
 
 

@@ -71,28 +71,71 @@ with tab1:
 
 
     #>>>>>>>>>>>>>>>>>>>>>> Graph
+    with st.container():
+            col1, col2, col3 = st.columns([3, 3, 3],gap="large",vertical_alignment="bottom")
+            
 
-    #6Scorecard nb Pays
-    fig_nb_pays = create_country_indicator(Athletes_medallists)
-    st.plotly_chart(fig_nb_pays)
+            col1.metric("Countries", len(Athletes_medallists["country_name"].unique()))
+            col2.metric("Athlete numbers", Athletes_medallists["name"].value_counts().sum())
+            col3.metric("Average age",round(Athletes_medallists["Age"].mean(),1))
+
+    with st.container():
+            col4, col5, col6 = st.columns([3, 3, 3],gap="large",vertical_alignment="bottom")
+
+            col4.metric("Total medals", Athletes_medallists["medals_number"].count())
+            col5.metric("Total sports", len(Athletes_medallists["sport_group"].unique()))
+            col6.metric("Total events", len(Athletes_medallists["events"].unique()))
+            
+
+    #1Athletes per countries distribution
+    x = Athlete_histo_1(Athletes_medallists.groupby("country_name")["code"].nunique().reset_index().groupby("code").agg({"country_name": "count"}).reset_index(),
+                x = 'code', y = 'country_name', barmode = "stack", log_y = True, histfunc= 'sum', title = "Athletes per countries distribution", text_auto = True)
+    x.update_traces(marker_line_width=1.5, marker_line_color="black", marker_color="lightgreen",textangle=0)  # Ajouter un contour noir
+    x.update_layout(
+        bargap=0.2,  # Espace entre les barres (entre 0 et 1, où 1 signifie aucun chevauchement)
+        yaxis_title="Number of countries",
+        xaxis_title="Number of athletes"
+        )
+    x.update_xaxes(nticks=20)
+    st.plotly_chart(x)
+
 
     #1Athlètes number per country
-    hist1 = Athlete_histo_1(Athletes_medallists, x = 'country_name',y =Athletes_medallists["code"], histfunc='count', color="country_name", title="Athletes number per country")
+    hist1 = Athlete_histo_1(Athletes_medallists,
+                            x = 'country_name',
+                            y =Athletes_medallists["code"],
+                            histfunc='count',
+                            color="country_name",
+                            title="Athletes number per country")
+    
     hist1 = hist1.update_xaxes(categoryorder='category ascending')
     st.plotly_chart(hist1)
 
+
+            #1Medals per countries distribution
+    x1 = Athlete_histo_1(Athletes_medallists.groupby("country_name")["medals_number"].nunique().reset_index().groupby("medals_number").agg({"country_name": "count"}).reset_index(),
+                x = 'medals_number', y = 'country_name', barmode = "stack", log_y = True, histfunc= 'sum', title = "Medals per countries distribution", text_auto = True)
+    x1.update_traces(marker_line_width=1.5, marker_line_color="black", marker_color="lightgreen",textangle=0)  # Ajouter un contour noir
+    x1.update_layout(
+        bargap=0.2,  # Espace entre les barres (entre 0 et 1, où 1 signifie aucun chevauchement)
+        yaxis_title="Number of countries",
+        xaxis_title="Number of medals"
+        )
+    x1.update_xaxes(nticks=10)
+    st.plotly_chart(x1)
+
     #2Medals number per country
-    hist2 = Athlete_histo_1(medals_total, x = 'country_name',y =medals_total["Total"], histfunc='sum', color="country_name",range_y=[0,150],range_x=[0,92], title="Medals number per country")
+    hist2 = Athlete_histo_1(medals_total,
+                            x = 'country_name',
+                            y =medals_total["Total"],
+                            histfunc='sum', color="country_name",
+                            range_y=[0,150],
+                            range_x=[0,92],
+                            title="Medals number per country")
+    
     hist2 = hist2.update_xaxes(categoryorder='category ascending')
     st.plotly_chart(hist2)
 
-    # #3Top 10 countries with the most disciplines
-    # hist3 = Athlete_histo_1(Athletes_medallists.groupby('country_name')['disciplines'].nunique().sort_values(ascending=False).head(10), x = 'country_name',y = 'disciplines', histfunc='sum', color="country_name",title="Top 10 countries with the most disciplines")
-    # st.plotly_chart(hist3)
-
-    # #4Top 10 countries with the most athletes
-    # plot1 = plot_top_10_athletes_pie(Athletes_medallists)
-    # st.plotly_chart(plot1)
 
     #5Graph combiné Nb de médailles/types/pays + % medailles d'or/pays
     plot2 = plot_top_10_medals_by_type(medals_total)
@@ -116,9 +159,10 @@ with tab2:
         y="medals_number",
         title=f"Medals by Country for {sport_group_filter}",
         labels={"medals_number": "Total Medals", "country_name": "Country"},
-        text="medals_number",
+        #text="medals_number",
+        color="country_name"
     )
-    bar1.update_traces(texttemplate='%{text:.0f}', textposition='outside')
+    #bar1.update_traces(texttemplate='%{text:.0f}', textposition='outside')
     bar1.update_layout(
         xaxis_title="Country",
         yaxis_title="Total Medals",
@@ -126,29 +170,4 @@ with tab2:
         uniformtext_mode="hide",
     )
     st.plotly_chart(bar1)
-
-
-
-    # aquatic = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Aquatic Sports'])]
-    # strength  = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Strength & Power Sports'])]
-    # combat = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Combat Sports'])]
-    # water = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Water-Based Sports'])]
-    # racket = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Racket Sports'])]
-    # precision = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Precision Sports'])]
-    # cycling_Multi = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Cycling & Multi-Terrain Sports'])]
-    # sliding_Adventure = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Sliding & Adventure Sports'])]
-    # team = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Team Sports'])]
-    # athletics = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Athletics'])]
-    # gymnastics = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Gymnastics & Acrobatic Sports'])]
-    # equestrian = Athletes_medallists[Athletes_medallists['sport_group'].isin(sport_groups['Equestrian Sports'])]
-
-    # def plot_top_sport_group(df, title):
-    # top_10_countries = df['country_name'].value_counts().head(10)
-    # # Use different color for each country
-    # fig = go.Figure(data=[go.Bar(
-    #     x=top_10_countries.index,
-    #     y=top_10_countries
-    # )])
-    # fig.update_layout(title=title, xaxis_title='Country', yaxis_title='Number of Medals')
-    # return fig
 
