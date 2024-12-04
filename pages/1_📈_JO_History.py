@@ -43,8 +43,7 @@ from utils import (
 
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
 
-#>>>>>>>>>>>>>>>>>>>>> Streamlit page
-
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Streamlit page
 
 st.set_page_config(
     page_title="JO History",
@@ -53,50 +52,56 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#Title & intro
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Olympic summer Games in time ')
     
 st.markdown("""**A brief history of the olympic summer games.**""")
 
-#>>>>>>>>>>>>>>>>>>>>>> Graph
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tab
+
+tab1, tab2,tab3 = st.tabs(["Historic", "Countries & Sport","Athletes"])
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab1
+
+with tab1:
 
 
-#Number of summer's JO hosted by country
-hist1 = Athlete_histo_1(olympics_games_summer,
-                        x = 'country_code',
-                        y="city_host", histfunc='count',
-                        color="country_code",
-                        title="Number of summer's JO hosted by country"
-                        )
+    #Number of summer's JO hosted by country
+    hist1 = Athlete_histo_1(olympics_games_summer,
+                            x = 'country_code',
+                            y="city_host", histfunc='count',
+                            color="country_code",
+                            title="Number of summer's JO hosted by country"
+                            )
 
-hist1.update_xaxes(categoryorder='category ascending')
-st.plotly_chart(hist1)
+    hist1.update_xaxes(categoryorder='category ascending')
+    hist1.update_layout(showlegend=False)
+    st.plotly_chart(hist1)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab2
+
+with tab2:
 
 
-#top3 summer
-top_summer = count_and_sort_editions(olympics_games_summer,
-                                        'country_code',
-                                        "year",
-                                        descending=True,
-                                        top_n=3
-                                        )
-#st.dataframe(top_summer)
+    line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
+    st.plotly_chart(line2)
 
-line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
-st.plotly_chart(line2)
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab3
+
+with tab3:
 
 #Number of athletes by edition
-line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False),
-                _x="year",
-                _y=["nb_athletes",
-                   "nb_men",
-                   "nb_women"],
-                 _title="Number of athletes by edition",
-                 _markers=True,
-                 _hover_data='country_code'
-                 )
-line1 = line1.update_traces(mode="lines+markers")
-line1.add_vline(x=1980,line_color="#00FF9C",line_dash="dash",line_width=3)
-st.plotly_chart(line1)
+    line1 = nb_line(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False),
+                    _x="year",
+                    _y=["nb_athletes",
+                    "nb_men",
+                    "nb_women"],
+                    _title="Number of athletes by edition",
+                    _markers=True,
+                    _hover_data='country_code'
+                    )
+    line1 = line1.update_traces(mode="lines+markers")
+    line1.add_vline(x=1980,line_color="#00FF9C",line_dash="dash",line_width=3)
+    st.plotly_chart(line1)
 

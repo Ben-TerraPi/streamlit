@@ -9,7 +9,6 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import gcsfs
 from st_files_connection import FilesConnection
-import seaborn as sns
 import pickle
 import re
 

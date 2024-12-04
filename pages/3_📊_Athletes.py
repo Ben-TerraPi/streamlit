@@ -9,7 +9,6 @@ from google.cloud import storage
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import seaborn as sns
 import gcsfs
 from st_files_connection import FilesConnection
 import pickle
@@ -157,18 +156,15 @@ with tab1:
 
 with tab2:
         
-    with st.container():
+    # with st.container():
 
-        col1, col2 = st.columns(2)
-        with col1:
-            pie1 = piepiepie(Athletes_medallists)
-            st.plotly_chart(pie1)
-        with col2:
-            print("hello")
+    #     col1, col2 = st.columns(2)
+    #     with col1:
+    #         pie1 = piepiepie(Athletes_medallists)
+    #         st.plotly_chart(pie1)
+    #     with col2:
 
-
-
-#
+            
     #11nombre de médailles par athlète
     top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 médailles par athlète", Text = "ratio_medals / events_number")
     st.plotly_chart(top3)
