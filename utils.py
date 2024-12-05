@@ -114,6 +114,7 @@ def nb_line1(df, x,y, title, color=None, markers=True, hover_data='country_code'
 def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
             _hover_data=None,_size=None, _marginal_x=None,
             _marginal_y=None, _size_max= None, _log_x = None, _log_y = None):
+  _df = _df.rename(columns={"Gender equality":"Gender Inequality"})
   # Now use the modified DataFrame for plotting
   if _size:
     _df[_size] = pd.to_numeric(_df[_size], errors='coerce') #Convert to numeric, coerce errors to NaN
@@ -125,7 +126,7 @@ def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
 
 #hisotogramme + line
 
-def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic Edition"):
+def plot_olympics_trends(data, title="Countries and Sports by Olympic Edition"):
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -134,7 +135,7 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
         x=data["year"],
         y=data["nb_country"],
         mode="lines+markers",
-        name="Number of Countries",
+        name="Countries number",
         hovertemplate=(
             "Year: %{x}<br>"
             + "Number of Countries: %{y}<br>"
@@ -148,12 +149,12 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
     bar_trace = go.Bar(
         x=data["year"],
         y=data["nb_sports"],
-        name="Number of Sports",
+        name="Sports number",
         marker=dict(opacity=0.6),
         marker_color ="#00FF9C",
         hovertemplate=(
             "Year: %{x}<br>"
-            + "Number of Sports: %{y}<br>"
+            + "Sports number: %{y}<br>"
             + "Country Code: %{customdata}<extra></extra>"
         ),
         customdata=data["country_code"],  # Add country code to hover data
@@ -164,11 +165,11 @@ def plot_olympics_trends(data, title="Number of Countries and Sports by Olympic 
     fig.update_layout(
         title=title,
         xaxis_title="Year",
-        yaxis_title="Number of Countries",
+        yaxis_title="Countries number",
     )
 
     # Update secondary y-axis title
-    fig.update_yaxes(title_text="Number of Sports", secondary_y=True)
+    fig.update_yaxes(title_text="Sports number", secondary_y=True)
 
     return fig
 
@@ -474,7 +475,7 @@ def Hist_tab_athletes_age(df):
   '''
 df = Athletes_medallists
   '''
-  hist_fig = px.histogram(df, x="Age", histfunc='count', color="gender", title="Athletes number per age", barmode='group')
+  hist_fig = px.histogram(df, x="Age", histfunc='count', color="gender", barmode='group')
 
   # Créer un tableau avec l'âge min et max par gender
   age_stats = df.groupby('gender').agg(
@@ -535,7 +536,7 @@ df = Athletes_medallists
 
   # Mise à jour de la mise en page pour ajuster l'apparence
   fig.update_layout(
-      title="Athletes Distribution per Age with Gender-based Age Stats",
+      #title="Athletes Distribution per Age",
       height=800,  # Hauteur totale
       showlegend=True  # Affiche la légende
   )
@@ -596,14 +597,14 @@ def Athletes_number_per_sport_family (df):
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>INTERACTIVE TABLE
 
-def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_family = None, sport_group = None, medals = None ):
+def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_family = None, sport_group = None, medals = None, discipline=None ):
     df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
-    Table = df[['name', 'country_name','gender','Age',
+    Table = df[['name', 'country_name','gender','Age','disciplines',
        'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
        'Silver Medal','Bronze Medal','team_nb_medal','Student','Employed']]
-    Table = Table.rename(columns={'name': "Name",'country_name' : "Country","gender" : "Gender",'sport_family' : "Sport Family", 'sport_group' : "Sport Group",
-                  'events_nb' : "Events",'disciplines_nb' : "Disciplines", 'Gold Medal' : "Gold",
-                  'Silver Medal' : "Silver",'Bronze Medal' : "Bronze",'team_nb_medal' : "Team medalist"})
+    Table = Table.rename(columns={'name': "Name", 'country_name' : "Country","gender" : "Gender",'sport_family' : "Sport Family", 'sport_group' : "Sport Group",
+                  'events_nb' : "Events",'disciplines_nb' : "Disciplines number", 'disciplines' : 'Disciplines', 'Gold Medal' : "Gold",
+                  'Silver Medal' : "Silver",'Bronze Medal' : "Bronze",'team_nb_medal' : "Team medalist" })
     Table.fillna(0, inplace=True)
     # Appliquer les filtres dynamiquement
     if medals is not None:
@@ -625,6 +626,8 @@ def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_fam
         Table = Table[Table["Sport Family"] == sport_family]
     if sport_group is not None:
         Table = Table[Table["Sport Group"] == sport_group]
+    if discipline is not None:
+        Table = Table[Table["Disciplines"].str.contains(discipline, na=False, case=False)]
     if Table.empty:
         print("No results to display.")
         return None
@@ -654,7 +657,7 @@ def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_fam
                   font=dict(color='rgb(0, 0, 0)', size=10),  # Texte noir
                   height=30
               ),
-              columnwidth = [30, 20, 20, 15, 20, 30, 20, 20, 15, 15, 15, 20, 20, 20]
+              columnwidth = [30, 20, 20, 15, 20, 20, 30, 20, 20, 15, 15, 15, 20, 20, 20]
           )
       ]
   )
@@ -677,3 +680,31 @@ def spearman_corr(df):
   fig1.update_xaxes(side="top")
 
   return(fig1)
+
+
+#
+def Women_vs_Men_medals_distribution (_df):
+  Subset =  _df[_df['gender'] == 'Female'].groupby("name").agg({"medals_number" : "sum"}).reset_index().groupby(["medals_number"]).agg({"name" : "count"}).reset_index()
+  Subset1 = _df[_df['gender'] == 'Male'].groupby("name").agg({"medals_number" : "sum"}).reset_index().groupby(["medals_number"]).agg({"name" : "count"}).reset_index()
+  Subset = Subset.merge(Subset1[['medals_number',"name"]], on = "medals_number", how = "left")
+  Subset.rename(columns = {"name_x" : "Female", "name_y" : "Male"}, inplace = True)
+  Subset.sort_values("medals_number", ascending = False)
+  _df["medallist"] = (_df['medals_number']>0).astype(int)
+  x = _df.groupby("gender")["medallist"].value_counts(normalize = True).reset_index()
+  WA = _df[_df['gender'] == 'Female']['medals_number'].mean().round(2)
+  MA = _df[_df['gender'] == 'Male']['medals_number'].mean().round(2)
+  WP = x[(x["gender"] == 'Female')&(x["medallist"] == 1)]["proportion"].min()
+  MP = x[(x["gender"] == 'Male')&(x["medallist"] == 1)]["proportion"].min()
+  WP = round(WP*100,2)
+  MP = round(MP*100,2)
+  Bar1 = Bar_chart_1(Subset, x = "medals_number", y = ["Female", "Male"], yaxes_title= " Athletes number (log 10)", barmode = "group", log_y= True, title = "Women vs Men medals distribution")
+  Bar1.add_trace(go.Scatter(
+    x=[4, 4, 4,4],
+    y=[3500, 1500, 800,350],
+    mode="text",
+    name="Descriptive information",
+    text=[f"Women medallist average : {WA}",f"Men medallist ave : {MA}",f"Women  medallist percent : {WP}",f"Men medallist percent : {MP}"],
+    textposition="bottom center",
+  ))
+
+  return(Bar1)

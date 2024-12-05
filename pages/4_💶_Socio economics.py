@@ -13,6 +13,9 @@ import gcsfs
 from st_files_connection import FilesConnection
 import pickle
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
@@ -155,7 +158,7 @@ with tab4:
 with tab5:
     
     #7Gender Inequality Index vs Total medals
-    line6 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Gender equality",
+    line6 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Gender Inequality",
             _color= "Continent",_title = "Gender Inequality Index vs Total medals,(circle size = GDP)",
             _markers=True, _hover_data='country_name', _size="GDP per capita", _size_max = 40, _marginal_y = "violin",_marginal_x = "violin")
     st.plotly_chart(line6)

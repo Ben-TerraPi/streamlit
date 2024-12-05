@@ -13,6 +13,9 @@ import gcsfs
 from st_files_connection import FilesConnection
 import pickle
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
@@ -36,7 +39,8 @@ from utils import (
     Athletes_number_per_sport_family,
     user1,
     create_country_indicator,
-    piepiepie
+    piepiepie,
+    Women_vs_Men_medals_distribution
 )
 
 
@@ -49,8 +53,7 @@ st.set_page_config(
 )
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
-st.title('Macro Analysis')
-st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+st.title('Analysis of athletes')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
 
@@ -123,6 +126,8 @@ with tab2:
 with tab4:
     #9Athletes number per age
     hist5 = Hist_tab_athletes_age(Athletes_medallists)
+    hist5.update_xaxes(title_text="age")
+    hist5.update_yaxes(title_text="number")
     st.plotly_chart(hist5)
 
     #12distribution of the number of events in which an athlete has participated
@@ -170,6 +175,12 @@ with tab5:
     st.plotly_chart(hist5)
 
 
+    #
+    bar18= Women_vs_Men_medals_distribution (Athletes_medallists)
+    bar18.update_xaxes(title_text="medals")
+    st.plotly_chart(bar18)
+
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
 
@@ -188,19 +199,21 @@ with tab3:
                                                                                                                                                                                                          color = 'sport_group',
                                                                                                                                                                                                          text='events',
                                                                                                                                                                                                          yaxes_title= "Athletes number",
-                                                                                                                                                                                                         title="Athletes number per Sport Group, (events number per Sport Group)",
+                                                                                                                                                                                                         title="Athletes number per sport group, (+ events number displayed)",
                                                                                                                                                                                                          textangle= 0,
                                                                                                                                                                                                          textposition = 'inside')
     bar2.update_layout(showlegend=False)
+    bar2.update_xaxes(title_text="Sport group")
     st.plotly_chart(bar2)
 
 
     #4Athletes number per Sport Family, (events number per sport_family)
     bar1 = Bar_chart_1(Athletes_medallists.groupby(['sport_family']).agg({"disciplines":"nunique", "name" : "count", "events":"nunique"}).sort_values(by = ["name"], ascending = False).reset_index().head(32),
                 y = 'name',x='sport_family', color = 'sport_family', text='events', yaxes_title= "Athletes number",
-                title="Athletes number per Sport Family, (events number per sport_family)",
+                title="Athletes number per Sport Family, (+ events number displayed)",
                 textangle= 0, textposition = 'outside')
     bar1.update_layout(showlegend=False)
+    bar1.update_xaxes(title_text="Sport family")
     st.plotly_chart(bar1)
 
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

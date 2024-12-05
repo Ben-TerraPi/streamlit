@@ -14,6 +14,10 @@ import gcsfs
 from st_files_connection import FilesConnection
 import pickle
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
@@ -56,10 +60,10 @@ with tab1:
                             x = 'country_code',
                             y="city_host", histfunc='count',
                             color="country_code",
-                            title="Number of summer's JO hosted by country"
+                            title="Summer's JO hosted by country"
                             )
 
-    hist1.update_xaxes(categoryorder='category ascending')
+    hist1.update_xaxes(title_text="country", categoryorder='category ascending')
     hist1.update_layout(showlegend=False)
     st.plotly_chart(hist1)
 
@@ -69,6 +73,7 @@ with tab2:
 
 
     line2 = plot_olympics_trends(olympics_games_summer.sort_values(by='year', ascending=True, inplace=False))
+    line2.update_yaxes(categoryorder='category ascending')
     st.plotly_chart(line2)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab3
@@ -81,24 +86,25 @@ with tab3:
                     _y=["nb_athletes",
                     "nb_men",
                     "nb_women"],
-                    _title="Number of athletes by edition",
+                    _title="Athletes by edition",
                     _markers=True,
                     _hover_data='country_code'
                     )
     line1 = line1.update_traces(mode="lines+markers")
     line1.add_vline(x=1980,line_color="#00FF9C",line_dash="dash",line_width=3)
+    line1.update_yaxes(title_text="number")
     st.plotly_chart(line1)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB4
 with tab4:
-    st.write("List of athletes with at least one Olympic appearances")
+    st.write("List of athletes with at least two Olympic appearances")
     with st.container():
     
         col1, col2 = st.columns(2)
 
         with col1:
 
-                ids = athlete_id_multiple[["athlete_id",	"participations",	"name",	"gender",	"country_code"]].sort_values("participations",ascending=False)
+                ids = athlete_id_multiple[["participations","name",	"gender",	"country_code"]].sort_values("participations",ascending=False).set_index("name")
                 st.dataframe(ids)
                 
         with col2:

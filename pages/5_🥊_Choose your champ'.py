@@ -14,6 +14,9 @@ import gcsfs
 from st_files_connection import FilesConnection
 import pickle
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import user1
 
 
@@ -43,8 +46,8 @@ sport_group = st.selectbox("Select sport group of athlete",
                     Athletes_medallists.sport_group.unique(),
                     index = None
                     )
-sport_family = st.selectbox("Select sport family of athlete",
-                            Athletes_medallists.sport_family.unique(),
+discipline = st.selectbox("Select sport discipline of athlete",
+                            Athletes_medallists.disciplines.unique(),
                             index = None
                             ) 
 
@@ -72,5 +75,5 @@ Age = st.selectbox("Select age of athlete",
 
 
 #1
-nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_family = sport_family, sport_group = sport_group, medals = medals)
+nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_group = sport_group, medals = medals, discipline = discipline)
 st.plotly_chart(nice_tab)

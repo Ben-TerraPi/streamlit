@@ -14,6 +14,9 @@ import gcsfs
 from st_files_connection import FilesConnection
 import pickle
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import (
     retrieve_object_from_bucket,
     get_data_from_bigquery,
@@ -34,9 +37,8 @@ st.set_page_config(
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
-st.title('Micro analysis')
+st.title('Analysis of participating countries')
 
-st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
@@ -75,7 +77,8 @@ with tab1:
                             color="country_name",
                             title="Athletes number per country")
     
-    hist1 = hist1.update_xaxes(categoryorder='category ascending')
+    hist1 = hist1.update_xaxes(title_text="country",categoryorder='category ascending')
+    hist1.update_yaxes(title_text="number")
     hist1.update_layout(showlegend=False)
     st.plotly_chart(hist1)
 
@@ -89,7 +92,8 @@ with tab1:
                             range_x=[0,92],
                             title="Medals number per country")
     
-    hist2 = hist2.update_xaxes(categoryorder='category ascending')
+    hist2 = hist2.update_xaxes(title_text="country",categoryorder='category ascending')
+    hist2.update_yaxes(title_text="number")
     hist2.update_layout(showlegend=False)
     st.plotly_chart(hist2)
 

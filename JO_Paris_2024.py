@@ -159,7 +159,7 @@ def main():
         st.caption("""
             Autors : 
             
-            Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
+            Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi/streamlit))
                 
             Maxime Mobailly
                 
@@ -167,7 +167,7 @@ def main():
                 
             Gautier Martin
                 
-            · Août 2024
+            · Decemnber 2024
         """)
 
  
@@ -183,10 +183,13 @@ def main():
 
     st.header("What this project covers:")
 
+    st.write("Browse pages on the left")
+
     st.markdown("""
     - Olympic summer games history.
-    - Micro analysis of Athletes.
-    - Macro analysis of participant Countries.
+    - Analysis of participating countries.
+    - Analysis of athletes.
+    - Socio-economic analysis.             
     """)
 
 
