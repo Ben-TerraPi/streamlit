@@ -39,6 +39,12 @@ st.set_page_config(
 st.title('Analysis of participating countries')
 
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
+with st.sidebar:
+    st.logo("images/The_Phryges.svg.png")
+    st.image("./images/logo-paris-2024.png")
+
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
 
@@ -65,7 +71,7 @@ with tab1:
 
             col4.metric("Total medals", Athletes_medallists["medals_number"].count())
             col5.metric("Total sports", len(Athletes_medallists["sport_group"].unique()))
-            col6.metric("Total events", len(Athletes_medallists["events"].unique()))
+            col6.metric("Medallist country", len(medals_total["country_name"].unique()))
            
 
     #1Athlètes number per country
@@ -101,12 +107,12 @@ with tab2:
 
     #>>>>>>>>>>>Athletes per countries distribution
     x = Athlete_histo_1(Athletes_medallists.groupby("country_name")["code"].nunique().reset_index().groupby("code").agg({"country_name": "count"}).reset_index(),
-                x = 'code', y = 'country_name', barmode = "stack", log_y = True, histfunc= 'sum', title = "Athletes per countries distribution", text_auto = True)
+                x = 'code', y = 'country_name', barmode = "stack", log_y = True, histfunc= 'sum', title = "Athletes per country distribution", text_auto = True)
     x.update_traces(marker_line_width=1.5, marker_line_color="black", marker_color="lightgreen",textangle=0)  # Ajouter un contour noir
     x.update_layout(
         bargap=0.2,  # Espace entre les barres (entre 0 et 1, où 1 signifie aucun chevauchement)
-        yaxis_title="Number of countries",
-        xaxis_title="Number of athletes"
+        yaxis_title="Countries number",
+        xaxis_title="Athletes number"
         )
     x.update_xaxes(nticks=20)
     st.plotly_chart(x)

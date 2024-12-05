@@ -34,11 +34,17 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#Title & intro
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Give it a try')
 
-st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
+with st.sidebar:
+    st.logo("images/The_Phryges.svg.png")
+    st.image("./images/logo-paris-2024.png")
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
 sport_group = st.selectbox("Select sport group of athlete",

@@ -134,6 +134,7 @@ def main():
 
 
     with st.sidebar:
+        st.logo("images/The_Phryges.svg.png")
         st.image("./images/logo-paris-2024.png")
 
         #st.header("Pages")
@@ -159,15 +160,15 @@ def main():
         st.caption("""
             Autors : 
             
-            Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi/streamlit))
+            Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
                 
-            Maxime Mobailly
+            Maxime Mobailly ([GitHub](https://github.com/maxmob35))
                 
-            Matteo Cherief
+            Matteo Cherief ([GitHub](https://github.com/Matteo-chf))
                 
-            Gautier Martin
+            Gautier Martin ([GitHub](https://github.com/Gautier35400)) 
                 
-            · Decemnber 2024
+            · December 2024
         """)
 
  

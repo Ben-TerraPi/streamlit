@@ -45,6 +45,11 @@ st.title('Olympic summer Games in time ')
     
 st.markdown("""**A brief history of the olympic summer games.**""")
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
+with st.sidebar:
+    st.logo("images/The_Phryges.svg.png")
+    st.image("./images/logo-paris-2024.png")
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tab
 
 tab1, tab2,tab3,tab4 = st.tabs(["Historic", "Countries & Sport","Athletes", "Top participations"])

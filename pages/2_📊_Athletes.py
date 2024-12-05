@@ -55,6 +55,12 @@ st.set_page_config(
 
 st.title('Analysis of athletes')
 
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
+with st.sidebar:
+    st.logo("images/The_Phryges.svg.png")
+    st.image("./images/logo-paris-2024.png")
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
 
 olympics_games_summer = pd.read_csv('data/olympics_games_summer.csv')
@@ -150,11 +156,16 @@ with tab6:
 
             
     #11nombre de médailles par athlète
-    top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 médailles par athlète", Text = "ratio_medals / events_number")
+    top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 medals per athlete", Text = "ratio_medals / events_number")
     st.plotly_chart(top3)
 
-    top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 médailles d'or par athlète", Text = 'Age')
+    top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 gold medals per athlete", Text = 'Age')
     st.plotly_chart(top4)
+
+    #
+    bar18= Women_vs_Men_medals_distribution (Athletes_medallists)
+    bar18.update_xaxes(title_text="medals")
+    st.plotly_chart(bar18)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
 with tab5:
@@ -167,18 +178,13 @@ with tab5:
                         y ='athletes',
                         histfunc='sum',
                         color="category",
-                        title="Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10",barmode= 'group',
+                        title="Women/Men ratio category displayed by country",barmode= 'group',
                         xaxes= False,
                         yaxes_title= "Athletes number (log10)" ,
                         xaxes_title=" Country",
                         log_y= True)
     st.plotly_chart(hist5)
 
-
-    #
-    bar18= Women_vs_Men_medals_distribution (Athletes_medallists)
-    bar18.update_xaxes(title_text="medals")
-    st.plotly_chart(bar18)
 
 
 

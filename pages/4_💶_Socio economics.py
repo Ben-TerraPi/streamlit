@@ -52,11 +52,16 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#Title & intro
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Socio Economics Analysis')
 
-st.markdown("""**Welcome to the Paris 2024 Olympic Games data visualization dashboard.**""")
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
+with st.sidebar:
+    st.logo("images/The_Phryges.svg.png")
+    st.image("./images/logo-paris-2024.png")
+
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
 
@@ -78,20 +83,20 @@ with tab1:
 
 with tab2:
     #1Correlation between GDP and Total medals by Gold medals
-    line1 = nb_line(Socio_economic_Dataset, _x = 'Total medals', _y = 'GDP',
-            _title = 'Correlation between GDP and Total medals by Gold medals',
+    line1 = nb_line(Socio_economic_Dataset, _x = 'GDP', _y = 'Total medals',
+            _title = 'Correlation between GDP and Total medals (circle size = Gold medals count)',
             _color = 'Continent', _hover_data='country_name', _size='Gold medals',_marginal_x='violin',_marginal_y='violin')
     st.plotly_chart(line1)
 
     #2Correlation between GDP per capita and Total medals
     line2 = nb_line(Socio_economic_Dataset, _y = 'Total medals', _x = 'GDP per capita',
-            _title = 'Correlation between GDP per capita and Total medals (size = Gold medals)', _color = 'country_name', _size = 'Gold medals')
+            _title = 'Correlation between GDP per capita and Total medals (circle size = Gold medals count)', _color = 'country_name', _size = 'Gold medals')
     line2.update_layout(showlegend=False)
     st.plotly_chart(line2)
 
     # #3Correlation between GDP and Total medals by continent
     line3 = nb_line(Socio_economic_Dataset, _x = 'GDP', _y = 'Total medals',
-            _title = 'Correlation between GDP and Total medals by continent',_color='Continent',
+            _title = 'Correlation between GDP and Total medals per continent',_color='Continent',
             _hover_data='country_name', _size = 'Population', _log_y=True, _marginal_x='violin', _marginal_y='violin')
     st.plotly_chart(line3)
 
@@ -101,13 +106,13 @@ with tab3:
     
     #4Life expectancy vs Total medals,(circle size = Population)
     line4 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Life expectancy",
-            _color= "Continent",_title = "Life expectancy vs Total medals,(circle size = Population)",
+            _color= "Continent",_title = "Life expectancy vs Total medals (circle size = Population)",
             _markers=True, _hover_data='country_name', _size="Population", _size_max = 40, _marginal_y = "violin",_marginal_x = "violin")
     st.plotly_chart(line4)
 
     #5Life expectancy vs Total medals
     line5 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Life expectancy",
-            _color= "Continent",_title = "Life expectancy vs Total medals,(circle size = GDP per capita)",
+            _color= "Continent",_title = "Life expectancy vs Total medals (circle size = GDP per capita)",
             _markers=True, _hover_data='country_name', _size="GDP per capita", _size_max = 40, _marginal_y = "violin",_marginal_x = "violin")
     st.plotly_chart(line5)
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB4
@@ -116,7 +121,7 @@ with tab4:
     
         #6Democracy Index vs Total medals
     line6 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Democracy",
-            _color= "Continent",_title = "Democracy Index vs Total medals,(circle size = GDP per capita)",
+            _color= "Continent",_title = "Democracy Index vs Total medals (circle size = GDP per capita)",
             _markers=True, _hover_data='country_name', _size="GDP per capita", _size_max = 40, _marginal_y = "violin",_marginal_x = "violin")
     st.plotly_chart(line6)
 
@@ -124,7 +129,7 @@ with tab4:
     line11 = nb_line(Socio_economic_Dataset,
             _x = 'urban_population',
             _y ='Total medals',
-            _title='Urban population for Total medals, size = GDP',
+            _title='Urban population for Total medals (circle size = GDP)',
             _color='Continent',
             _hover_data='Total medals',
             _size='GDP',
@@ -135,7 +140,7 @@ with tab4:
     line12 = nb_line(Socio_economic_Dataset,
                     _x = 'total_population',
                     _y ='Total medals',
-                    _title='Total population for Total medals, size = GDP',
+                    _title='Total population for Total medals (circle size = GDP)',
                     _color='Continent',
                     _hover_data='Total medals',
                     _size='GDP',
@@ -146,7 +151,7 @@ with tab4:
     line13 = nb_line(_df = Socio_economic_Dataset,                
                     _x='Number of athletes',
                     _y='Total medals',
-                    _title='Number of athletes for Total medals, size = GDP',
+                    _title='Number of athletes for Total medals (circle size = GDP)',
                     _color='Continent',
                     _hover_data='Total medals',
                     _size='total_population',
@@ -159,7 +164,7 @@ with tab5:
     
     #7Gender Inequality Index vs Total medals
     line6 = nb_line(_df= Socio_economic_Dataset, _y='Total medals', _x ="Gender Inequality",
-            _color= "Continent",_title = "Gender Inequality Index vs Total medals,(circle size = GDP)",
+            _color= "Continent",_title = "Gender Inequality Index vs Total medals (circle size = GDP)",
             _markers=True, _hover_data='country_name', _size="GDP per capita", _size_max = 40, _marginal_y = "violin",_marginal_x = "violin")
     st.plotly_chart(line6)
 
@@ -169,24 +174,24 @@ with tab6:
     
     #8percentage_of_total_employment linked to Sports vs Total medals
     line7 = nb_line(_df= Socio_economic_Dataset.loc[Socio_economic_Dataset['Continent'] == 'Europe'], _y='Total medals', _x ="percentage_of_total_employment",
-            _color= "country_name",_title = "percentage_of_total_employment linked to Sports vs Total medals,(circle size = Number of athletes)",
+            _color= "country_name",_title = "Percentage of total employment linked to Sports vs Total medals (circle size = Number of athletes)",
             _markers=True, _hover_data='country_name', _size="Number of athletes", _size_max = 40)
     st.plotly_chart(line7)
 
     #8Share of the budget allocated to sports vs Total medals
     line8 = nb_line(_df= Socio_economic_Dataset.loc[Socio_economic_Dataset['Continent'] == 'Europe'], _y='Total medals', _x ="GF0801",
-            _color= "country_name",_title = "Share of the budget allocated to sports vs Total medals,(circle size = Number of athletes)",
+            _color= "country_name",_title = "Share of the budget allocated to sports vs Total medals (circle size = Number of athletes)",
             _markers=True, _hover_data='country_name', _size="Number of athletes", _size_max = 40)
     st.plotly_chart(line8)
 
     #9Share of the budget allocated to sports vs Gold medals
     line9 = nb_line(_df= Socio_economic_Dataset.loc[Socio_economic_Dataset['Continent'] == 'Europe'], _y='Gold medals', _x ="GF0801",
-            _color= "country_name",_title = "Share of the budget allocated to sports vs Gold medals,(circle size = Number of athletes)",
+            _color= "country_name",_title = "Share of the budget allocated to sports vs Gold medals (circle size = Number of athletes)",
             _markers=True, _hover_data='country_name', _size="Number of athletes", _size_max = 40)
     st.plotly_chart(line9)
 
     #10
     line10 = nb_line(_df= Socio_economic_Dataset.loc[Socio_economic_Dataset['Continent'] == 'Europe'], _y='Gold medals', _x ="sports_facilities_very_satisfied_2023",
-            _color= "country_name",_title = "sports_facilities_very_satisfied_2023 vs Gold medals,(circle size = Number of athletes)",
+            _color= "country_name",_title = "High satisfaction facilities marker for 2023 vs Gold medals (circle size = Number of athletes)",
             _markers=True, _hover_data='country_name', _size="Number of athletes", _size_max = 40)
     st.plotly_chart(line10)
