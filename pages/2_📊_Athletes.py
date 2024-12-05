@@ -157,9 +157,11 @@ with tab6:
             
     #11nombre de médailles par athlète
     top3 = Athlete_medals_top20(df = Athletes_medallists, filter = 'medals_number',title = "Top 20 medals per athlete", Text = "ratio_medals / events_number")
+    top3.update_layout(height=650, width=1500)
     st.plotly_chart(top3)
 
     top4 = Athlete_medals_top20(df = Athletes_medallists, filter = "Gold Medal", title = "Top 20 gold medals per athlete", Text = 'Age')
+    top4.update_layout(height=650, width=1500)
     st.plotly_chart(top4)
 
     #
