@@ -148,29 +148,6 @@ def main():
         #     #placeholder=,
         # )
 
-        st.subheader("About", divider="grey")
-
-        st.markdown("""
-        **The Paris 2024 Olympic Games data visualization dashboard**
-        is a project developed as part of *Le Wagon* bootcamp @Rennes,
-        it showcases data from the 
-        **Paris 2024 Olympic games**.
-        """)
-
-        st.caption("""
-            Autors : 
-            
-            Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
-                
-            Maxime Mobailly ([GitHub](https://github.com/maxmob35))
-                
-            Matteo Cherief ([GitHub](https://github.com/Matteo-chf))
-                
-            Gautier Martin ([GitHub](https://github.com/Gautier35400)) 
-                
-            · December 2024
-        """)
-
  
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HOME page
 
@@ -204,6 +181,10 @@ def main():
         st.dataframe(medals_total)
         st.write("Socio_economic_Dataset")
         st.dataframe(Socio_economic_Dataset)     
+
+
+    st.header("Sources:")
+    st.write("https://olympics.com/en/paris-2024")
 
 
 if __name__ == "__main__":

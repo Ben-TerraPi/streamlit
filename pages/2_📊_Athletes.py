@@ -68,7 +68,7 @@ Athletes_medallists = pd.read_csv('data/Athletes_medallists.csv')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-tab1,tab2,tab3,tab4,tab5,tab6 = st.tabs(["Indicators","Globals", "by Sports", "Distributions", "Gender Equality","Results"])
+tab1,tab2,tab3,tab4,tab5 = st.tabs(["Indicators", "by Sports", "Distributions", "Gender Equality","Medallists"])
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>tab1
 
@@ -87,6 +87,7 @@ with tab1:
                         "nb_athletes",
                         "code"
                         )
+            score1.update_layout(height=300, width=300)
             st.plotly_chart(score1)
         
         with col2:
@@ -96,24 +97,22 @@ with tab1:
                         filter = 2020,
                         colum1 = "nb_athletes",
                         column2 = "code")
-            st.plotly_chart(score2)       
+            score2.update_layout(height=300, width=300)
+            st.plotly_chart(score2) 
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Tab2
 
-with tab2:
-        
-    with st.container():
-        col1, col2, col3,col4 = st.columns([2, 2, 2, 2],gap="large",vertical_alignment="bottom")
+    # with st.container():
+    #     col1, col2, col3,col4 = st.columns([2, 2, 2, 2],gap="large",vertical_alignment="bottom")
         
 
-        col1.metric("Youngest Athlete",
-                        Athletes_medallists["Age"].min())
-        col2.metric("Youngest medalist",
-                        Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].min())
-        col3.metric("Oldest Athlete",
-                        (Athletes_medallists["Age"].max()))
-        col4.metric("Oldest medalist",
-                    Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].max())
+        # col1.metric("Youngest Athlete",
+        #                 Athletes_medallists["Age"].min())
+        # col2.metric("Youngest medalist",
+        #                 Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].min())
+        # col3.metric("Oldest Athlete",
+        #                 (Athletes_medallists["Age"].max()))
+        # col4.metric("Oldest medalist",
+        #             Athletes_medallists[Athletes_medallists["medals_number"] > 0 ]["Age"].max())
         
     with st.container():
         col5,col6,col7,col8 = st.columns([2, 2, 2,2],gap="large",vertical_alignment="bottom")
@@ -126,10 +125,16 @@ with tab2:
         col7.metric("Men events",
                     Athletes_medallists.groupby(['events'])["gender"].value_counts().reset_index().groupby("gender").agg({"events" : "count"}).reset_index()["events"][1])
         col8.write("")
+        # with col8:
+        #     pie1 = px.pie(Athletes_medallists.groupby(["gender"])["events"].nunique().reset_index(), values = "events",names='gender')
+        #     pie1.update_layout(height=200, width=200)
+        #     st.plotly_chart(pie1)
+      
+        
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB4
 
-with tab4:
+with tab3:
     #9Athletes number per age
     hist5 = Hist_tab_athletes_age(Athletes_medallists)
     hist5.update_xaxes(title_text="age")
@@ -144,7 +149,7 @@ with tab4:
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB6
 
-with tab6:
+with tab5:
         
     # with st.container():
 
@@ -170,7 +175,7 @@ with tab6:
     st.plotly_chart(bar18)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
-with tab5:
+with tab4:
 
         #8Athletes number Women/Men ratio category displays by country ** representing values as powers of a base 10
     hist5 = Athlete_histo_1(gender_ratio(Athletes_medallists, column = "gender", column2= "code").sort_values(['category',
@@ -192,7 +197,7 @@ with tab5:
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TAB5
 
-with tab3:
+with tab2:
 
     #Athletes number per Sport Group, (events number per sport_group)
     bar2 = Bar_chart_1(Athletes_medallists.groupby(["disciplines"]).agg({"sport_group" : 'max',

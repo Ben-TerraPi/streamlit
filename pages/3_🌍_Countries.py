@@ -53,7 +53,7 @@ medals_total = pd.read_csv('data/medals_total.csv')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Sub tab
 
-tab1, tab2,tab3,tab4 = st.tabs(["Globals","Distributions", "Sport groups","Results"])
+tab1, tab2,tab3,tab4 = st.tabs(["Globals","Distributions", "Sport groups","Medallists"])
 
 with tab1:
 

@@ -703,7 +703,7 @@ def Women_vs_Men_medals_distribution (_df):
     y=[3500, 1500, 800,350],
     mode="text",
     name="Descriptive information",
-    text=[f"Women medallist average : {WA}",f"Men medallist ave : {MA}",f"Women  medallist percent : {WP}",f"Men medallist percent : {MP}"],
+    text=[f"Women medallist average : {WA}",f"Men medallist average : {MA}",f"Women  medallist percent : {WP}",f"Men medallist percent : {MP}"],
     textposition="bottom center",
   ))
 
