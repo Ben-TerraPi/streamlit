@@ -9,7 +9,6 @@ from google.cloud import storage
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import seaborn as sns
 import gcsfs
 from st_files_connection import FilesConnection
 import pickle
