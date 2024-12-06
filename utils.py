@@ -445,7 +445,7 @@ column2 = "code"
   },
   value=(df2[df2["gender"] == "Female"]["code"].nunique() / df2["code"].nunique())*100,
   number={'suffix': '', 'valueformat': ',.0f'},
-  title={'text': "Female vs Male"},
+  title={'text': "Female vs Male (%)"},
   domain={'x': [0, 1], 'y': [0, 1]}
   ))
 
