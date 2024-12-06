@@ -67,7 +67,7 @@ with tab1:
                             title="Summer's JO hosted by country"
                             )
 
-    hist1.update_xaxes(title_text="country", categoryorder='category ascending')
+    hist1.update_xaxes(title_text="country")#, categoryorder='category ascending')
     hist1.update_layout(showlegend=False)
     st.plotly_chart(hist1)
 

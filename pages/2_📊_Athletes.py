@@ -99,6 +99,7 @@ with tab1:
                         column2 = "code")
             score2.update_layout(height=300, width=300)
             st.plotly_chart(score2) 
+            
 
 
     # with st.container():

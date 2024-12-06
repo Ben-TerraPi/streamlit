@@ -50,6 +50,8 @@ with st.container():
         Gautier Martin ([GitHub](https://github.com/Gautier35400)) 
             
         · December 2024
+        
+        Version 1.0
         """)
             
     
