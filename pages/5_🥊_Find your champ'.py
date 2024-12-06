@@ -37,6 +37,7 @@ st.set_page_config(
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Give it a try')
+st.write("you can search with one multiple conditions")
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
@@ -47,10 +48,10 @@ with st.sidebar:
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-sport_group = st.selectbox("Select sport group of athlete",
-                    Athletes_medallists.sport_group.unique(),
-                    index = None
-                    )
+# sport_group = st.selectbox("Select sport group of athlete",
+#                     Athletes_medallists.sport_group.unique(),
+#                     index = None
+#                     )
 discipline = st.selectbox("Select sport discipline of athlete",
                             Athletes_medallists.disciplines.unique(),
                             index = None
