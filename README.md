@@ -5,12 +5,12 @@ is a project developed as part of *Le Wagon* bootcamp @Rennes,
 it showcases data from the 
 **Paris 2024 Olympic games**
 
-        Autors : 
+Autors : 
 
-        Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
-            
-        Maxime Mobailly ([GitHub](https://github.com/maxmob35))
-            
-        · December 2024
-        
-        Version 1.0
+Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
+    
+Maxime Mobailly ([GitHub](https://github.com/maxmob35))
+    
+· December 2024
+
+Version 1.0
