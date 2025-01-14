@@ -45,9 +45,13 @@ with st.container():
             
         Maxime Mobailly ([GitHub](https://github.com/maxmob35))
             
+        Matteo Cherief ([GitHub](https://github.com/Matteo-chf))
+            
+        Gautier Martin ([GitHub](https://github.com/Gautier35400)) 
+            
         · December 2024
         
-        Version 2.0
+        Version 1.0
         """)
             
     
