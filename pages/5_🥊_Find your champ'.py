@@ -17,6 +17,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import user1
+from dict_jo import group_discipline, discipline_name, sport_country
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>DATAFRAME
@@ -47,38 +48,59 @@ with st.sidebar:
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-sport_group = st.selectbox("Select sport group of athlete",
-                    Athletes_medallists.sport_group.unique(),
-                    index = None
-                    )
-discipline = st.selectbox("Select sport discipline of athlete",
-                            Athletes_medallists.disciplines.unique(),
-                            index = None
-                            ) 
-
-medals = st.selectbox("Which medals",
-                          ("Gold", "Silver", "Bronze"),
-                          index=None
-                          )
-
-name = st.selectbox("Select name of athlete",
-                    Athletes_medallists.name,
-                    index = None
-                    )
-gender = st.selectbox("Select gender of athlete",
-                    Athletes_medallists.gender.unique(),
-                    index = None
-)
-country_name = st.selectbox("Select country of athlete",
-                    Athletes_medallists.country_name.unique(),
-                    index = None
-)
-Age = st.selectbox("Select age of athlete",
-                    Athletes_medallists.Age.unique(),
-                    index = None
+sport_group = st.selectbox(
+    "Select sport group of athlete",
+    [""] + sorted(list(group_discipline.keys())),
+    index=None
 )
 
+if sport_group:
+    disciplines = sorted(group_discipline.get(sport_group, []))
+else:
+    disciplines = sorted(set(discipline for group in group_discipline.values() for discipline in group))
 
-#1
-nice_tab = user1(Athletes_medallists, name = name , gender = gender, country_name = country_name , Age = Age, sport_group = sport_group, medals = medals, discipline = discipline)
-st.plotly_chart(nice_tab)
+discipline = st.selectbox(
+    "Select sport discipline of athlete",
+    [""] + disciplines,
+    index=None
+)
+
+medals = st.selectbox(
+    "Which medals",
+    ("Gold", "Silver", "Bronze"),
+    index=None
+)
+
+if discipline:
+    names = sorted(discipline_name.get(discipline, []))
+else:
+    names = sorted(set(name for name_list in discipline_name.values() for name in name_list))
+
+name = st.selectbox(
+    "Select name of athlete",
+    [""] + names,
+    index=None
+)
+
+if discipline:
+    countries = sorted(set(sport_country.get(discipline, [])))
+else:
+    countries = sorted(set(country for country_list in sport_country.values() for country in country_list))
+
+country_name = st.selectbox(
+    "Select country of athlete",
+    [""] + countries,
+    index=None
+)
+
+gender = st.selectbox(
+    "Select gender of athlete",
+    sorted(Athletes_medallists.gender.unique()),
+    index=None
+)
+
+
+if st.button("Generate Link"):
+    nice_tab = user1(Athletes_medallists, name=name, gender=gender, country_name=country_name, 
+                     sport_group=sport_group, medals=medals, discipline=discipline)
+    st.plotly_chart(nice_tab)
