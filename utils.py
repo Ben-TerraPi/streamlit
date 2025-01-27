@@ -597,7 +597,7 @@ def Athletes_number_per_sport_family (df):
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>INTERACTIVE TABLE
 
-def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_family = None, sport_group = None, medals = None, discipline=None ):
+def user1(df, name = None, gender = None, country_name = None, sport_family = None, sport_group = None, medals = None, discipline=None ):
     df = df.sort_values(["Gold Medal", "Silver Medal", "Bronze Medal"], ascending = [False, False, False])
     Table = df[['name', 'country_name','gender','Age','disciplines',
        'sport_family', 'sport_group','events_nb','disciplines_nb', 'Gold Medal',
@@ -620,8 +620,8 @@ def user1(df, name = None, gender = None, country_name = None,Age = 0, sport_fam
         Table = Table[Table["Gender"] == gender]
     if country_name is not None:
         Table = Table[Table["Country"] == country_name]
-    if Age != None:
-        Table = Table[Table["Age"] == Age]
+    # if Age != None:
+    #     Table = Table[Table["Age"] == Age]
     if sport_family is not None:
         Table = Table[Table["Sport Family"] == sport_family]
     if sport_group is not None:
