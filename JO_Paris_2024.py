@@ -172,7 +172,7 @@ def main():
 
 
     # Expander
-    with st.expander("Olympic dataset"):
+    with st.expander("Olympic datasets"):
         st.write("""olympics_games_summer:""")
         st.dataframe(olympics_games_summer)
         st.write("""Athletes_medallists:""")

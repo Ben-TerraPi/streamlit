@@ -126,7 +126,7 @@ def nb_line(_df, _x,_y, _title = None, _color=None, _markers=True,
 
 #hisotogramme + line
 
-def plot_olympics_trends(data, title="Countries and Sports by Olympic Edition"):
+def plot_olympics_trends(data, title="Number of countries and sports per Olympic Edition"):
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 

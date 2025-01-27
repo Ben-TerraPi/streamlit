@@ -70,7 +70,7 @@ with tab1:
             col4, col5, col6 = st.columns([3, 3, 3],gap="large",vertical_alignment="bottom")
 
             col4.metric("Total medals", Athletes_medallists["medals_number"].count())
-            col5.metric("Total sports", len(Athletes_medallists["sport_group"].unique()))
+            col5.metric("Total sports group", len(Athletes_medallists["sport_group"].unique()))
             col6.metric("Medallist country", len(medals_total["country_name"].unique()))
            
 

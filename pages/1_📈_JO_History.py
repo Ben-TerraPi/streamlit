@@ -64,7 +64,7 @@ with tab1:
                             x = 'country_code',
                             y="city_host", histfunc='count',
                             color="country_code",
-                            title="Summer's JO hosted by country"
+                            title="Summer's JO hosted per country"
                             )
 
     hist1.update_xaxes(title_text="country")#, categoryorder='category ascending')
@@ -90,7 +90,7 @@ with tab3:
                     _y=["nb_athletes",
                     "nb_men",
                     "nb_women"],
-                    _title="Athletes by edition",
+                    _title="Athletes per edition",
                     _markers=True,
                     _hover_data='country_code'
                     )

@@ -38,6 +38,7 @@ st.set_page_config(
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Title & intro
 
 st.title('Give it a try')
+st.write("You can search with one or multiple conditions and see the results on the bottom.")
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIDEBAR
