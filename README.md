@@ -13,4 +13,5 @@ Maxime Mobailly ([GitHub](https://github.com/maxmob35))
     
 · December 2024
 
+https://jo-2024-dashboard.streamlit.app/
 Version 1.0
