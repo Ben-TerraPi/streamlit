@@ -1,7 +1,7 @@
 # 🏅 Paris JO 2024 - Data Visualization Project
 
 The Paris 2024 Olympic Games data visualization dashboard**
-is a project developed as part of *Le Wagon* bootcamp @Rennes,
+is a project developed in two weeks as part of *Le Wagon* bootcamp @Rennes,
 it showcases data from the 
 **Paris 2024 Olympic games**
 
