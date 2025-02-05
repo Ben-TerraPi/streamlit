@@ -10,6 +10,11 @@ Autors :
 Benoît Dourdet ([GitHub](https://github.com/Ben-TerraPi))
     
 Maxime Mobailly ([GitHub](https://github.com/maxmob35))
+
+Matteo Cherief ([GitHub](https://github.com/Matteo-chf))
+            
+Gautier Martin ([GitHub](https://github.com/Gautier35400)) 
+            
     
 · December 2024
 
