@@ -18,5 +18,5 @@ Gautier Martin ([GitHub](https://github.com/Gautier35400))
     
 · December 2024
 
-https://jo-2024-dashboard.streamlit.app/
+https://app-55bagkjlypy8esfadzrvdq.streamlit.app
 Version 1.0
